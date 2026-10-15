@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictions - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="#" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item active">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>AI Predictions</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Thursday, August 27, 2026 - 11:44 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 6 Top KPI Cards -->
+                <div class="kpi-container six-cols">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOMORROW'S OCCUPANCY</span>
+                            <div class="kpi-icon orange-bg">🛏️</div>
+                        </div>
+                        <div class="kpi-value" id="predTomorrowOcc">--</div>
+                        <div class="kpi-subtext" id="predOccDiff">Loading...</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">EXPECTED ADMISSIONS</span>
+                            <div class="kpi-icon blue-bg">👤</div>
+                        </div>
+                        <div class="kpi-value" id="predAdmissions">--</div>
+                        <div class="kpi-subtext">Predicted for today</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">EXPECTED DISCHARGES</span>
+                            <div class="kpi-icon green-bg">✓</div>
+                        </div>
+                        <div class="kpi-value" id="predDischarges">--</div>
+                        <div class="kpi-subtext">Predicted for today</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">PREDICTED AVG LOS</span>
+                            <div class="kpi-icon blue-bg">⏱️</div>
+                        </div>
+                        <div class="kpi-value" id="predAvgLos">--</div>
+                        <div class="kpi-subtext">Average across patients</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">READMISSION RISK</span>
+                            <div class="kpi-icon red-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value" id="predReadmitRisk">--</div>
+                        <div class="kpi-subtext" id="predHighRisk">Loading...</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">BED UTILIZATION</span>
+                            <div class="kpi-icon blue-bg">📈</div>
+                        </div>
+                        <div class="kpi-value" id="predBedUtil">--</div>
+                        <div class="kpi-subtext">7-day XGBoost forecast</div>
+                    </div>
+                </div>
+
+                <!-- Middle Split: 7-Day Forecast & Model Confidence -->
+                <div class="flow-grid">
+                    <!-- 7-Day Occupancy Forecast -->
+                    <div class="flow-card chart-card">
+                        <div class="card-header-flex">
+                            <h2 class="card-title">7-Day Occupancy Forecast</h2>
+                            <span class="pill purple-pill">AI Model v2.4</span>
+                        </div>
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 500 220" class="svg-chart" id="forecastSvg">
+                                <!-- Grid Lines -->
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+                                <line x1="40" y1="190" x2="480" y2="190" class="chart-grid-line"/>
+
+                                <!-- Y-Axis Labels -->
+                                <text x="25" y="34" class="chart-axis-text">100%</text>
+                                <text x="25" y="74" class="chart-axis-text">92%</text>
+                                <text x="25" y="114" class="chart-axis-text">84%</text>
+                                <text x="25" y="154" class="chart-axis-text">76%</text>
+                                <text x="25" y="194" class="chart-axis-text">70%</text>
+
+                                <!-- Dynamic Forecast Curve & Shading -->
+                                <path id="forecastArea" fill="rgba(221, 107, 32, 0.08)" stroke="none"/>
+                                <path id="forecastLine" fill="none" stroke="#dd6b20" stroke-width="2.5" stroke-dasharray="5 5"/>
+
+                                <!-- Data Dots -->
+                                <g id="forecastDots"></g>
+
+                                <!-- Value Labels above dots -->
+                                <g id="forecastValues"></g>
+
+                                <!-- X-Axis Day Labels -->
+                                <g id="forecastXLabels"></g>
+                            </svg>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot orange-dot"></span> Predicted (7-Day Forecast)</span>
+                        </div>
+                    </div>
+
+                    <!-- Model Confidence Bar Progress -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Model Confidence</h2>
+                        <div class="confidence-list">
+                            <div class="conf-item">
+                                <div class="conf-header">
+                                    <span class="conf-label">Occupancy Forecast</span>
+                                    <span class="conf-value green-text">92%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar green-bar" style="width: 92%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="conf-item">
+                                <div class="conf-header">
+                                    <span class="conf-label">Admission Prediction</span>
+                                    <span class="conf-value green-text">87%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar green-bar" style="width: 87%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="conf-item">
+                                <div class="conf-header">
+                                    <span class="conf-label">Discharge Prediction</span>
+                                    <span class="conf-value orange-text">84%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar warning" style="width: 84%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="conf-item">
+                                <div class="conf-header">
+                                    <span class="conf-label">LOS Estimation</span>
+                                    <span class="conf-value orange-text">78%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar warning" style="width: 78%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="conf-item">
+                                <div class="conf-header">
+                                    <span class="conf-label">Readmission Risk</span>
+                                    <span class="conf-value orange-text">81%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar warning" style="width: 81%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lower Section 1: Ward-wise Predictions — Current vs Tomorrow Bar Chart -->
+                <div class="flow-card bar-chart-card">
+                    <h2 class="card-title">Ward-wise Predictions — Current vs Tomorrow</h2>
+                    <div id="wardBarChart" style="display:flex; align-items:flex-end; justify-content:space-around; gap:0; padding:16px 8px 0 8px; min-height:180px; width:100%;">
+                        <div style="color:#aaa;font-size:13px;">Loading ward data...</div>
+                    </div>
+                    <div class="chart-legend" style="margin-top:12px;">
+                        <span class="legend-item"><span class="dot dark-blue-dot"></span> Current</span>
+                        <span class="legend-item"><span class="dot orange-dot"></span> Predicted (Tomorrow)</span>
+                    </div>
+                </div>
+
+
+                <!-- Lower Section 2: Patient Predictions Table -->
+                <div class="flow-card">
+                    <div class="card-header-flex">
+                        <h2 class="card-title">Patient Predictions — LOS &amp; Readmission Risk</h2>
+                        <span class="pill purple-pill">XGBoost Live</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>MRN</th>
+                                    <th>PATIENT NAME</th>
+                                    <th>CONDITION</th>
+                                    <th>AGE</th>
+                                    <th>PREDICTED LOS</th>
+                                    <th>READMISSION RISK</th>
+                                    <th>RISK LEVEL</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patientPredTbody">
+                                <tr><td colspan="7" style="text-align:center;padding:20px;color:#888;">Loading XGBoost predictions...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Lower Section 3: AI Recommendations -->
+                <div class="flow-card">
+                    <h2 class="card-title">AI Recommendations</h2>
+                    <div class="rec-grid" id="recGrid">
+                        <div style="padding:20px;color:#888;">Loading recommendations...</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Live XGBoost Prediction Loader
+        async function loadPredictions() {
+            try {
+                const res = await fetch('/api/predictions');
+                const json = await res.json();
+                if (!json.success) return;
+
+                const s = json.summary;
+
+                // KPI Cards
+                const todayOcc  = s.today_occupancy_pct;
+                const tomOcc    = s.tomorrow_occupancy_pct;
+                const diff      = (tomOcc - todayOcc).toFixed(1);
+                const arrow     = diff >= 0 ? '↗️' : '↘️';
+
+                document.getElementById('predTomorrowOcc').textContent   = tomOcc + '%';
+                document.getElementById('predOccDiff').textContent        = `${arrow} ${Math.abs(diff)}% from today`;
+                document.getElementById('predAdmissions').textContent     = s.expected_admissions;
+                document.getElementById('predDischarges').textContent     = s.expected_discharges;
+                document.getElementById('predAvgLos').textContent         = s.avg_predicted_los + 'd';
+                document.getElementById('predReadmitRisk').textContent    = s.readmission_risk_pct + '%';
+                document.getElementById('predHighRisk').textContent       = s.high_risk_patients + ' high-risk patients';
+                document.getElementById('predBedUtil').textContent        = s.bed_utilization_7day + '%';
+
+                // 7-Day Forecast SVG — dynamically draw line & points through every predicted value
+                const forecast = json.forecast_7day;
+                if (forecast && forecast.length >= 7) {
+                    const xCoords = [60, 130, 200, 270, 340, 410, 480];
+                    const pts = forecast.map((f, i) => {
+                        const pct = f.occupancy_pct;
+                        // Y-scale: 100% = 30px, 70% = 190px (span = 160px for 30%)
+                        const clamped = Math.max(68, Math.min(100, pct));
+                        const y = 190 - ((clamped - 70) / 30) * 160;
+                        return { x: xCoords[i], y: Math.round(y * 10) / 10, pct: pct, day: f.day };
+                    });
+
+                    // Build smooth cubic bezier curve that passes through every point
+                    let dCurve = `M ${pts[0].x} ${pts[0].y}`;
+                    for (let i = 0; i < pts.length - 1; i++) {
+                        const p0 = pts[i === 0 ? 0 : i - 1];
+                        const p1 = pts[i];
+                        const p2 = pts[i + 1];
+                        const p3 = pts[i + 2 >= pts.length ? pts.length - 1 : i + 2];
+
+                        const cp1x = p1.x + (p2.x - p0.x) / 6;
+                        const cp1y = p1.y + (p2.y - p0.y) / 6;
+                        const cp2x = p2.x - (p3.x - p1.x) / 6;
+                        const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+                        dCurve += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x} ${p2.y}`;
+                    }
+
+                    const pathLine = document.getElementById('forecastLine');
+                    if (pathLine) pathLine.setAttribute('d', dCurve);
+
+                    const pathArea = document.getElementById('forecastArea');
+                    if (pathArea) {
+                        const dArea = `${dCurve} L ${pts[pts.length - 1].x} 190 L ${pts[0].x} 190 Z`;
+                        pathArea.setAttribute('d', dArea);
+                    }
+
+                    // Render Data Dots at exact (x, y) coordinates
+                    const dotsGroup = document.getElementById('forecastDots');
+                    if (dotsGroup) {
+                        dotsGroup.innerHTML = pts.map(p => `
+                            <circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#dd6b20" stroke="#ffffff" stroke-width="1.5">
+                                <title>${p.day}: ${p.pct}%</title>
+                            </circle>
+                        `).join('');
+                    }
+
+                    // Render percentage value above each dot
+                    const valsGroup = document.getElementById('forecastValues');
+                    if (valsGroup) {
+                        valsGroup.innerHTML = pts.map(p => `
+                            <text x="${p.x}" y="${p.y - 9}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#c05621">${p.pct}%</text>
+                        `).join('');
+                    }
+
+                    // Render clean X-axis Day labels at the bottom without overlap
+                    const xLabelsGroup = document.getElementById('forecastXLabels');
+                    if (xLabelsGroup) {
+                        xLabelsGroup.innerHTML = pts.map(p => `
+                            <text x="${p.x}" y="210" text-anchor="middle" class="chart-axis-text" font-size="11" fill="#718096">${p.day}</text>
+                        `).join('');
+                    }
+                }
+
+                // Patient Predictions Table
+                const tbody = document.getElementById('patientPredTbody');
+                if (tbody && json.patient_predictions.length > 0) {
+                    tbody.innerHTML = '';
+                    json.patient_predictions.forEach(p => {
+                        const risk = p.readmission_risk_pct;
+                        let pillCls = risk >= 30 ? 'red-pill' : (risk >= 15 ? 'orange-pill' : 'green-pill');
+                        let label   = risk >= 30 ? 'High Risk'   : (risk >= 15 ? 'Medium Risk'  : 'Low Risk');
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="bold-text blue-link">${p.mrn}</td>
+                            <td class="bold-text">${p.name}</td>
+                            <td><span class="pill ${p.condition === 'Critical' ? 'red-pill' : (p.condition === 'Stable' ? 'green-pill' : 'orange-pill')} status-text">${p.condition}</span></td>
+                            <td>${p.age}</td>
+                            <td><strong>${p.predicted_los_days}d</strong></td>
+                            <td><strong>${risk}%</strong></td>
+                            <td><span class="pill ${pillCls}">${label}</span></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+
+                // Ward Bar Chart (dynamic, from live API)
+                const wardChart = document.getElementById('wardBarChart');
+                if (wardChart && json.ward_predictions.length > 0) {
+                    wardChart.innerHTML = '';
+                    json.ward_predictions.forEach(w => {
+                        const curH  = Math.round(w.current_occupancy * 1.6);   // scale to max ~160px
+                        const predH = Math.round(w.predicted_occupancy * 1.6);
+                        const shortName = w.ward_name.split(' ')[0]; // e.g. "ICU Wing A" → "ICU"
+                        const predColor = w.predicted_occupancy >= 90 ? '#e53e3e'
+                                        : w.predicted_occupancy >= 80 ? '#dd6b20' : '#dd6b20';
+
+                        wardChart.innerHTML += `
+                            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:default;position:relative;"
+                                 onmouseenter="showBarTip(event,'${w.ward_name}',${w.current_occupancy},${w.predicted_occupancy})"
+                                 onmouseleave="hideBarTip()">
+                                <div style="display:flex;align-items:flex-end;gap:4px;height:160px;">
+                                    <div title="Current: ${w.current_occupancy}%"
+                                         style="width:22px;height:${curH}px;background:#1664c0;border-radius:4px 4px 0 0;transition:height 0.4s ease;"></div>
+                                    <div title="Predicted: ${w.predicted_occupancy}%"
+                                         style="width:22px;height:${predH}px;background:${predColor};border-radius:4px 4px 0 0;transition:height 0.4s ease;"></div>
+                                </div>
+                                <span style="font-size:11px;color:#555;text-align:center;max-width:70px;line-height:1.2;">${shortName}</span>
+                            </div>`;
+                    });
+                }
+
+                // AI Recommendations
+                const recGrid = document.getElementById('recGrid');
+                if (recGrid && json.recommendations.length > 0) {
+                    const colorMap = {
+                        red:    { card: 'red-rec',    badge: 'red-badge',    btn: 'red-outline'    },
+                        orange: { card: 'orange-rec', badge: 'orange-badge', btn: 'orange-outline' },
+                        blue:   { card: 'blue-rec',   badge: 'blue-badge',   btn: 'blue-outline'   }
+                    };
+                    recGrid.innerHTML = json.recommendations.map(r => {
+                        const cls = colorMap[r.color] || colorMap.blue;
+                        return `
+                            <div class="rec-card ${cls.card}">
+                                <div class="rec-header">
+                                    <h3 class="rec-title">${r.title}</h3>
+                                    <span class="alert-badge ${cls.badge}">${r.severity}</span>
+                                </div>
+                                <p class="rec-desc">${r.description}</p>
+                                <button class="outline-btn ${cls.btn}" onclick="this.textContent='✓ Actioned'">Take Action →</button>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // Model confidence bars update
+                const confValues = document.querySelectorAll('.conf-value');
+                const progBars   = document.querySelectorAll('.progress-bar');
+                if (confValues.length >= 4) {
+                    const confidences = [
+                        { val: 92, label: '92%', cls: 'green-text' },
+                        { val: 87, label: '87%', cls: 'green-text' },
+                        { val: 84, label: '84%', cls: 'orange-text' },
+                        { val: 70, label: '70%', cls: 'orange-text' }
+                    ];
+                    confidences.forEach((c, i) => {
+                        if (confValues[i]) {
+                            confValues[i].textContent = c.label;
+                            confValues[i].className = 'conf-value ' + c.cls;
+                        }
+                        if (progBars[i]) progBars[i].style.width = c.val + '%';
+                    });
+                }
+
+                console.log('[XGBoost] Predictions loaded at', json.generated_at);
+
+            } catch (err) {
+                console.error('Failed to load XGBoost predictions:', err);
+            }
+        }
+
+        // Bar chart hover tooltip helpers
+        let _tipEl = null;
+        function showBarTip(event, wardName, cur, pred) {
+            if (!_tipEl) {
+                _tipEl = document.createElement('div');
+                _tipEl.style.cssText = 'position:fixed;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;font-size:13px;box-shadow:0 4px 16px rgba(0,0,0,0.12);pointer-events:none;z-index:9999;min-width:130px;';
+                document.body.appendChild(_tipEl);
+            }
+            const arrow = pred > cur ? '↗️' : (pred < cur ? '↘️' : '→');
+            _tipEl.innerHTML = `
+                <div style="font-weight:600;margin-bottom:6px;color:#1a202c;">${wardName}</div>
+                <div style="color:#3182ce;">Current: <strong>${cur}%</strong></div>
+                <div style="color:#dd6b20;">Predicted: <strong>${pred}%</strong> ${arrow}</div>`;
+            _tipEl.style.display = 'block';
+            _tipEl.style.left = (event.clientX + 14) + 'px';
+            _tipEl.style.top  = (event.clientY - 10) + 'px';
+        }
+        function hideBarTip() {
+            if (_tipEl) _tipEl.style.display = 'none';
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${hours}:${minutes} ${ampm}`;
+        }
+
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+
+        // Load on page ready + refresh every 60s
+        loadPredictions();
+        setInterval(loadPredictions, 60000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

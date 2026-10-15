@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts & Notifications - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item active">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red" id="sidebarAlertBadge">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Alerts & Notifications</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Thursday, August 27, 2026 - 11:17 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge" id="topNotifBadge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 4 Top KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CRITICAL ALERTS</span>
+                            <div class="kpi-icon red-bg">✕</div>
+                        </div>
+                        <div class="kpi-value" id="kpiCritical">2</div>
+                        <div class="kpi-subtext">Immediate action required</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">HIGH PRIORITY</span>
+                            <div class="kpi-icon orange-bg">⚠️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiHigh">2</div>
+                        <div class="kpi-subtext">Needs attention today</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">MEDIUM PRIORITY</span>
+                            <div class="kpi-icon blue-bg">ℹ️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiMedium">2</div>
+                        <div class="kpi-subtext">Monitor and plan</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">LOW PRIORITY</span>
+                            <div class="kpi-icon gray-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value" id="kpiLow">1</div>
+                        <div class="kpi-subtext">Informational</div>
+                    </div>
+                </div>
+
+                <!-- Alerts List Container -->
+                <div class="alerts-section">
+                    <div class="alerts-filter-header">
+                        <h2 class="section-title">All Alerts</h2>
+                        <div class="filter-tabs">
+                            <button class="tab-btn active" onclick="setFilterTab('All', this)">All</button>
+                            <button class="tab-btn" onclick="setFilterTab('Critical', this)">Critical</button>
+                            <button class="tab-btn" onclick="setFilterTab('High', this)">High</button>
+                            <button class="tab-btn" onclick="setFilterTab('Medium', this)">Medium</button>
+                            <button class="tab-btn" onclick="setFilterTab('Low', this)">Low</button>
+                        </div>
+                    </div>
+
+                    <div class="alerts-list" id="alertsList">
+                        <!-- Alert 1 -->
+                        <div class="alert-card critical-alert" data-priority="Critical">
+                            <div class="alert-icon-box red-box">✕</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">ICU at 93% Capacity</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge red-badge">Critical</span>
+                                        <span class="alert-time">2 min ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">ICU occupancy has reached critical threshold. Immediate action required.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">ICU</span>
+                                    <span class="action-suggestion">→ Transfer non-critical patients to Step-Down Unit</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 2 -->
+                        <div class="alert-card critical-alert" data-priority="Critical">
+                            <div class="alert-icon-box red-box">✕</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Emergency Ward Overcrowded</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge red-badge">Critical</span>
+                                        <span class="alert-time">8 min ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">Emergency ward operating at 90% capacity with 4 patients in waiting.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">Emergency</span>
+                                    <span class="action-suggestion">→ Activate overflow protocol and notify on-call team</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 3 -->
+                        <div class="alert-card high-alert" data-priority="High">
+                            <div class="alert-icon-box orange-box">⚠️</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Delayed Discharge — Cardiology</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge orange-badge">High</span>
+                                        <span class="alert-time">25 min ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">7 patients have exceeded expected discharge time by 4+ hours.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">Cardiology</span>
+                                    <span class="action-suggestion">→ Contact attending physicians for discharge orders</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 4 -->
+                        <div class="alert-card high-alert" data-priority="High">
+                            <div class="alert-icon-box orange-box">⚠️</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Predicted Bed Shortage Tomorrow</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge orange-badge">High</span>
+                                        <span class="alert-time">1 hr ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">AI model forecasts 3-bed shortage in ICU by 14:00 tomorrow.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">ICU</span>
+                                    <span class="action-suggestion">→ Pre-authorize 3 flex beds in Step-Down Unit</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 5 -->
+                        <div class="alert-card medium-alert" data-priority="Medium">
+                            <div class="alert-icon-box blue-box">ℹ️</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Maternity Ward Staffing Gap</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge blue-badge">Medium</span>
+                                        <span class="alert-time">2 hr ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">Night shift coverage below minimum threshold for Maternity ward.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">Maternity</span>
+                                    <span class="action-suggestion">→ Contact agency for supplemental nursing staff</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 6 -->
+                        <div class="alert-card medium-alert" data-priority="Medium">
+                            <div class="alert-icon-box blue-box">ℹ️</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Bed Cleaning Backlog</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge blue-badge">Medium</span>
+                                        <span class="alert-time">3 hr ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">12 beds awaiting housekeeping for over 90 minutes.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">General</span>
+                                    <span class="action-suggestion">→ Dispatch priority housekeeping team</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alert 7 -->
+                        <div class="alert-card low-alert" data-priority="Low">
+                            <div class="alert-icon-box gray-box">ℹ️</div>
+                            <div class="alert-content">
+                                <div class="alert-top-row">
+                                    <h3 class="alert-title">Scheduled Maintenance — OR 3</h3>
+                                    <div class="alert-meta">
+                                        <span class="alert-badge gray-badge">Low</span>
+                                        <span class="alert-time">5 hr ago</span>
+                                        <button class="dismiss-btn" onclick="dismissAlert(this)" title="Dismiss Alert">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="alert-desc">Operating Room 3 scheduled for equipment maintenance tomorrow 08:00–12:00.</p>
+                                <div class="alert-footer-tags">
+                                    <span class="ward-tag">OR</span>
+                                    <span class="action-suggestion">→ Reroute elective procedures to OR 1 and OR 2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentTabFilter = 'All';
+
+        function setFilterTab(category, btn) {
+            currentTabFilter = category;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterAlerts();
+        }
+
+        function filterAlerts() {
+            const searchVal = document.getElementById('topSearchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.alert-card');
+
+            cards.forEach(card => {
+                const priority = card.getAttribute('data-priority');
+                const textContent = card.textContent.toLowerCase();
+
+                const matchesTab = (currentTabFilter === 'All') || (priority === currentTabFilter);
+                const matchesSearch = !searchVal || textContent.includes(searchVal);
+
+                if (matchesTab && matchesSearch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function dismissAlert(btn) {
+            const card = btn.closest('.alert-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-10px)';
+            card.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                card.remove();
+                updateKPIs();
+            }, 300);
+        }
+
+        function updateKPIs() {
+            const cards = document.querySelectorAll('.alert-card');
+            let critical = 0;
+            let high = 0;
+            let medium = 0;
+            let low = 0;
+
+            cards.forEach(card => {
+                const p = card.getAttribute('data-priority');
+                if (p === 'Critical') critical++;
+                else if (p === 'High') high++;
+                else if (p === 'Medium') medium++;
+                else if (p === 'Low') low++;
+            });
+
+            const total = cards.length;
+            document.getElementById('kpiCritical').textContent = critical;
+            document.getElementById('kpiHigh').textContent = high;
+            document.getElementById('kpiMedium').textContent = medium;
+            document.getElementById('kpiLow').textContent = low;
+
+            document.getElementById('sidebarAlertBadge').textContent = total;
+            document.getElementById('topNotifBadge').textContent = critical;
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

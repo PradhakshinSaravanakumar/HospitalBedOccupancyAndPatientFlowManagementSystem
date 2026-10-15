@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item active">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue" id="sidebarPatientBadge">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Patients</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Monday, August 10, 2026 - 11:08 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 4 KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL PATIENTS</span>
+                            <div class="kpi-icon blue-bg">👤</div>
+                        </div>
+                        <div class="kpi-value" id="kpiTotalPatients">247</div>
+                        <div class="kpi-subtext">Currently admitted</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CRITICAL</span>
+                            <div class="kpi-icon red-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value" id="kpiCritical">12</div>
+                        <div class="kpi-subtext">Requiring immediate care</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">STABLE</span>
+                            <div class="kpi-icon green-bg">✓</div>
+                        </div>
+                        <div class="kpi-value" id="kpiStable">198</div>
+                        <div class="kpi-subtext">Under monitoring</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG LOS</span>
+                            <div class="kpi-icon blue-bg">⏱️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiAvgLos">4.2d</div>
+                        <div class="kpi-subtext">Days per patient</div>
+                    </div>
+                </div>
+
+                <!-- Patient Inventory Section -->
+                <div class="inventory-section">
+                    <div class="inventory-header">
+                        <h2>All Patients</h2>
+                        <button class="btn-primary" onclick="openAddPatientModal()">+ Add Patient</button>
+                    </div>
+                    
+                    <div class="inventory-controls">
+                        <div class="search-bar inventory-search">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="patientSearchInput" placeholder="Search patients..." oninput="filterPatients()">
+                        </div>
+                        <select id="statusFilter" class="filter-select" onchange="filterPatients()">
+                            <option value="All">All Statuses</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Stable">Stable</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Recovering">Recovering</option>
+                            <option value="Discharged">Discharged</option>
+                        </select>
+                        <select id="wardFilter" class="filter-select" onchange="filterPatients()">
+                            <option value="All">All Wards</option>
+                            <option value="ICU">ICU Ward</option>
+                            <option value="Emergency">Emergency Ward</option>
+                            <option value="Cardiology">Cardiology Ward</option>
+                            <option value="Neurology">Neurology Ward</option>
+                            <option value="Orthopedic">Orthopedic Ward</option>
+                            <option value="Pediatrics">Pediatrics Ward</option>
+                            <option value="Maternity">Maternity Ward</option>
+                            <option value="General">General Ward</option>
+                        </select>
+                        <div class="beds-count" id="patientCountText">8 patients shown</div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table" id="patientsTable">
+                            <thead>
+                                <tr>
+                                    <th>PATIENT ID</th>
+                                    <th>NAME</th>
+                                    <th>AGE / GENDER</th>
+                                    <th>WARD</th>
+                                    <th>BED</th>
+                                    <th>DIAGNOSIS</th>
+                                    <th>STATUS</th>
+                                    <th>ADMITTED</th>
+                                    <th>LOS</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patientsTableBody">
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4821</td>
+                                    <td class="patient-name bold-text">Marcus Rodriguez</td>
+                                    <td class="patient-age">58</td>
+                                    <td class="patient-ward">ICU</td>
+                                    <td class="patient-bed">ICU-07</td>
+                                    <td class="patient-diagnosis">Cardiac Arrest</td>
+                                    <td><span class="pill red-pill status-text">Critical</span></td>
+                                    <td class="fade-text patient-admitted">Jul 28</td>
+                                    <td class="patient-los">3d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4820</td>
+                                    <td class="patient-name bold-text">Elena Vasquez</td>
+                                    <td class="patient-age">34</td>
+                                    <td class="patient-ward">Maternity</td>
+                                    <td class="patient-bed">MAT-12</td>
+                                    <td class="patient-diagnosis">Postpartum Care</td>
+                                    <td><span class="pill green-pill status-text">Stable</span></td>
+                                    <td class="fade-text patient-admitted">Jul 30</td>
+                                    <td class="patient-los">1d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4819</td>
+                                    <td class="patient-name bold-text">James Thornton</td>
+                                    <td class="patient-age">72</td>
+                                    <td class="patient-ward">Neurology</td>
+                                    <td class="patient-bed">NEU-05</td>
+                                    <td class="patient-diagnosis">Ischemic Stroke</td>
+                                    <td><span class="pill orange-pill status-text">Moderate</span></td>
+                                    <td class="fade-text patient-admitted">Jul 25</td>
+                                    <td class="patient-los">6d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4818</td>
+                                    <td class="patient-name bold-text">Priya Sharma</td>
+                                    <td class="patient-age">45</td>
+                                    <td class="patient-ward">Cardiology</td>
+                                    <td class="patient-bed">CAR-09</td>
+                                    <td class="patient-diagnosis">Atrial Fibrillation</td>
+                                    <td><span class="pill green-pill status-text">Stable</span></td>
+                                    <td class="fade-text patient-admitted">Jul 29</td>
+                                    <td class="patient-los">2d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4817</td>
+                                    <td class="patient-name bold-text">Thomas Müller</td>
+                                    <td class="patient-age">61</td>
+                                    <td class="patient-ward">Orthopedic</td>
+                                    <td class="patient-bed">ORT-03</td>
+                                    <td class="patient-diagnosis">Hip Replacement</td>
+                                    <td><span class="pill purple-pill status-text">Recovering</span></td>
+                                    <td class="fade-text patient-admitted">Jul 27</td>
+                                    <td class="patient-los">4d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4816</td>
+                                    <td class="patient-name bold-text">Aisha Okonkwo</td>
+                                    <td class="patient-age">28</td>
+                                    <td class="patient-ward">Emergency</td>
+                                    <td class="patient-bed">EM-14</td>
+                                    <td class="patient-diagnosis">Polytrauma</td>
+                                    <td><span class="pill red-pill status-text">Critical</span></td>
+                                    <td class="fade-text patient-admitted">Jul 31</td>
+                                    <td class="patient-los">0d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4815</td>
+                                    <td class="patient-name bold-text">Robert Kim</td>
+                                    <td class="patient-age">55</td>
+                                    <td class="patient-ward">General</td>
+                                    <td class="patient-bed">GEN-22</td>
+                                    <td class="patient-diagnosis">Pneumonia</td>
+                                    <td><span class="pill green-pill status-text">Stable</span></td>
+                                    <td class="fade-text patient-admitted">Jul 28</td>
+                                    <td class="patient-los">3d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link patient-id">PT-4814</td>
+                                    <td class="patient-name bold-text">Sophie Laurent</td>
+                                    <td class="patient-age">39</td>
+                                    <td class="patient-ward">Cardiology</td>
+                                    <td class="patient-bed">CAR-14</td>
+                                    <td class="patient-diagnosis">STEMI</td>
+                                    <td><span class="pill orange-pill status-text">Moderate</span></td>
+                                    <td class="fade-text patient-admitted">Jul 30</td>
+                                    <td class="patient-los">1d</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditPatientModal(this)" title="Edit Patient">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deletePatientRow(this)" title="Delete Patient">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add / Edit Patient Modal -->
+    <div id="patientModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Patient</h3>
+                <button class="modal-close-btn" onclick="closePatientModal()">&times;</button>
+            </div>
+            <form id="patientForm" onsubmit="handleSavePatient(event)">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formPatientId">Patient ID</label>
+                            <input type="text" id="formPatientId" placeholder="e.g. PT-4822" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formPatientName">Full Name</label>
+                            <input type="text" id="formPatientName" placeholder="e.g. Marcus Rodriguez" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formAge">Age</label>
+                            <input type="number" id="formAge" min="1" max="120" placeholder="e.g. 58" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGender">Gender</label>
+                            <select id="formGender" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formWard">Ward</label>
+                            <select id="formWard" required>
+                                <option value="ICU Ward">ICU Ward</option>
+                                <option value="Emergency Ward">Emergency Ward</option>
+                                <option value="Cardiology Ward">Cardiology Ward</option>
+                                <option value="Neurology Ward">Neurology Ward</option>
+                                <option value="Orthopedic Ward">Orthopedic Ward</option>
+                                <option value="Pediatrics Ward">Pediatrics Ward</option>
+                                <option value="Maternity Ward">Maternity Ward</option>
+                                <option value="General Ward">General Ward</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formBed">Bed ID</label>
+                            <input type="text" id="formBed" placeholder="e.g. ICU-07" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formDiagnosis">Diagnosis</label>
+                            <input type="text" id="formDiagnosis" placeholder="e.g. Cardiac Arrest" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formStatus">Status</label>
+                            <select id="formStatus" required>
+                                <option value="Critical">Critical</option>
+                                <option value="Stable">Stable</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Recovering">Recovering</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="width: 100%;">
+                            <label for="formAdmitted">Admitted Date</label>
+                            <input type="text" id="formAdmitted" placeholder="e.g. Aug 10" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closePatientModal()">Cancel</button>
+                    <button type="submit" class="btn-primary" id="savePatientBtn">Save Patient</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let editingRowElement = null;
+
+        function syncHeaderSearch(val) {
+            document.getElementById('patientSearchInput').value = val;
+            filterPatients();
+        }
+
+        function filterPatients() {
+            const searchVal = document.getElementById('patientSearchInput').value.toLowerCase().trim();
+            const statusVal = document.getElementById('statusFilter').value;
+            const wardVal = document.getElementById('wardFilter').value;
+
+            const rows = document.querySelectorAll('#patientsTableBody tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const textContent = row.textContent.toLowerCase();
+                const statusText = row.querySelector('.status-text') ? row.querySelector('.status-text').textContent.trim() : '';
+                const wardName = row.querySelector('.patient-ward') ? row.querySelector('.patient-ward').textContent.trim() : '';
+
+                const matchesSearch = !searchVal || textContent.includes(searchVal);
+                const matchesStatus = (statusVal === 'All') || (statusText === statusVal);
+                const cleanWardVal = wardVal.toLowerCase().replace(' ward', '').trim();
+                const cleanWardName = wardName.toLowerCase().replace(' ward', '').trim();
+                const matchesWard = (wardVal === 'All') || 
+                                    cleanWardName.includes(cleanWardVal) || 
+                                    cleanWardVal.includes(cleanWardName);
+
+                if (matchesSearch && matchesStatus && matchesWard) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('patientCountText').textContent = `${visibleCount} patients shown`;
+        }
+
+        function updatePatientKPIs() {
+            const rows = document.querySelectorAll('#patientsTableBody tr');
+            let total = rows.length;
+            let critical = 0;
+            let stable = 0;
+
+            rows.forEach(row => {
+                const statusElem = row.querySelector('.status-text');
+                if (statusElem) {
+                    const status = statusElem.textContent.trim();
+                    if (status === 'Critical') critical++;
+                    else if (status === 'Stable') stable++;
+                }
+            });
+
+            document.getElementById('kpiTotalPatients').textContent = total;
+            document.getElementById('kpiCritical').textContent = critical;
+            document.getElementById('kpiStable').textContent = stable;
+        }
+
+        function getStatusPillClass(status) {
+            if (status === 'Critical') return 'pill red-pill status-text';
+            if (status === 'Stable') return 'pill green-pill status-text';
+            if (status === 'Moderate') return 'pill orange-pill status-text';
+            return 'pill purple-pill status-text';
+        }
+
+        function openAddPatientModal() {
+            editingRowElement = null;
+            document.getElementById('modalTitle').textContent = 'Add New Patient';
+            document.getElementById('savePatientBtn').textContent = 'Add Patient';
+            document.getElementById('patientForm').reset();
+            
+            // Auto generate next patient ID
+            const rows = document.querySelectorAll('#patientsTableBody tr');
+            const nextNum = 4822 + rows.length;
+            document.getElementById('formPatientId').value = `PT-${nextNum}`;
+            document.getElementById('formAdmitted').value = 'Aug 10';
+            
+            document.getElementById('patientModal').classList.add('active');
+        }
+
+        function openEditPatientModal(btn) {
+            editingRowElement = btn.closest('tr');
+            document.getElementById('modalTitle').textContent = 'Edit Patient Info';
+            document.getElementById('savePatientBtn').textContent = 'Update Patient';
+
+            document.getElementById('formPatientId').value = editingRowElement.querySelector('.patient-id').textContent.trim();
+            document.getElementById('formPatientName').value = editingRowElement.querySelector('.patient-name').textContent.trim();
+            
+            const ageGenderText = editingRowElement.querySelector('.patient-age').textContent.trim();
+            const parts = ageGenderText.split('/');
+            document.getElementById('formAge').value = parseInt(parts[0]) || 40;
+            if (parts[1]) {
+                const genderVal = parts[1].trim();
+                const genderSelect = document.getElementById('formGender');
+                if (genderSelect) genderSelect.value = genderVal;
+            }
+
+            const wardVal = editingRowElement.querySelector('.patient-ward').textContent.trim();
+            const formWardSelect = document.getElementById('formWard');
+            let wardMatched = false;
+            for (let i = 0; i < formWardSelect.options.length; i++) {
+                const opt = formWardSelect.options[i];
+                const optClean = opt.value.toLowerCase().replace(' ward', '').trim();
+                const cellClean = wardVal.toLowerCase().replace(' ward', '').trim();
+                if (optClean === cellClean || opt.value.toLowerCase() === wardVal.toLowerCase()) {
+                    formWardSelect.selectedIndex = i;
+                    wardMatched = true;
+                    break;
+                }
+            }
+            if (!wardMatched) formWardSelect.value = wardVal;
+
+            document.getElementById('formBed').value = editingRowElement.querySelector('.patient-bed').textContent.trim();
+            document.getElementById('formDiagnosis').value = editingRowElement.querySelector('.patient-diagnosis').textContent.trim();
+            document.getElementById('formStatus').value = editingRowElement.querySelector('.status-text').textContent.trim();
+            document.getElementById('formAdmitted').value = editingRowElement.querySelector('.patient-admitted').textContent.trim();
+
+            document.getElementById('patientModal').classList.add('active');
+        }
+
+        function closePatientModal() {
+            document.getElementById('patientModal').classList.remove('active');
+            document.getElementById('patientForm').reset();
+            editingRowElement = null;
+        }
+
+        async function handleSavePatient(event) {
+            event.preventDefault();
+            const mrn = document.getElementById('formPatientId').value.trim();
+            const name = document.getElementById('formPatientName').value.trim();
+            const age = parseInt(document.getElementById('formAge').value) || 40;
+            const gender = document.getElementById('formGender').value;
+            const ward = document.getElementById('formWard').value;
+            const bed = document.getElementById('formBed').value.trim();
+            const diagnosis = document.getElementById('formDiagnosis').value.trim();
+            const status = document.getElementById('formStatus').value;
+            const admitted = document.getElementById('formAdmitted').value.trim();
+
+            const payload = {
+                mrn: mrn,
+                name: name,
+                age: age,
+                gender: gender,
+                ward_name: ward,
+                bed_number: bed,
+                diagnosis: diagnosis,
+                condition: status,
+                admission_date: admitted,
+                physician: 'Dr. Sarah Jenkins'
+            };
+
+            try {
+                let res;
+                if (editingRowElement && editingRowElement.dataset.id) {
+                    const patientId = editingRowElement.dataset.id;
+                    res = await fetch(`/api/patients/${patientId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    res = await fetch(`/api/patients`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                }
+                const json = await res.json();
+                if (json.success) {
+                    closePatientModal();
+                    if (typeof renderPatientsTable === 'function') {
+                        await renderPatientsTable();
+                    } else {
+                        window.location.reload();
+                    }
+                    if (typeof loadGlobalKPIs === 'function') {
+                        loadGlobalKPIs();
+                    }
+                } else {
+                    alert('Failed to save to database: ' + (json.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('API Error:', err);
+                alert('Error saving patient to MongoDB server.');
+            }
+        }
+
+        async function deletePatientRow(btn) {
+            const row = btn.closest('tr');
+            const mrn = row.querySelector('.patient-id')?.textContent.trim();
+            const patientId = row.dataset.id;
+            const name = row.querySelector('.patient-name')?.textContent.trim();
+
+            if (confirm(`Are you sure you want to delete patient ${name}?`)) {
+                try {
+                    const url = patientId ? `/api/patients/${patientId}` : `/api/patients/by-mrn/${mrn}`;
+                    const res = await fetch(url, { method: 'DELETE' });
+                    const json = await res.json();
+                    if (json.success) {
+                        if (typeof renderPatientsTable === 'function') {
+                            await renderPatientsTable();
+                        } else {
+                            row.remove();
+                        }
+                        if (typeof loadGlobalKPIs === 'function') {
+                            loadGlobalKPIs();
+                        }
+                    }
+                } catch (err) {
+                    console.error('Delete error:', err);
+                    row.remove();
+                }
+            }
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

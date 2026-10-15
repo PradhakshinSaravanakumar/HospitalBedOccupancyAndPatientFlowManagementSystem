@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item active">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Reports</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Thursday, August 27, 2026 - 11:27 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 4 KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL ADMISSIONS</span>
+                            <div class="kpi-icon blue-bg">📥</div>
+                        </div>
+                        <div class="kpi-value">2,377</div>
+                        <div class="kpi-subtext">↗️ Jul 2026</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL DISCHARGES</span>
+                            <div class="kpi-icon green-bg">✓</div>
+                        </div>
+                        <div class="kpi-value">2,306</div>
+                        <div class="kpi-subtext">Jul 2026</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG OCCUPANCY</span>
+                            <div class="kpi-icon orange-bg">📈</div>
+                        </div>
+                        <div class="kpi-value">82.4%</div>
+                        <div class="kpi-subtext">This period</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG LOS</span>
+                            <div class="kpi-icon blue-bg">⏱️</div>
+                        </div>
+                        <div class="kpi-value">4.2d</div>
+                        <div class="kpi-subtext">Per patient</div>
+                    </div>
+                </div>
+
+                <!-- Middle Split: Admissions & Discharges vs Occupancy Trend -->
+                <div class="flow-grid">
+                    <!-- Admissions & Discharges Bar Chart -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Admissions & Discharges</h2>
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 500 220" class="svg-chart">
+                                <!-- Grid Lines -->
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+                                <line x1="40" y1="190" x2="480" y2="190" class="chart-grid-line"/>
+
+                                <!-- Y-Axis Labels -->
+                                <text x="25" y="34" class="chart-axis-text">400</text>
+                                <text x="25" y="74" class="chart-axis-text">300</text>
+                                <text x="25" y="114" class="chart-axis-text">200</text>
+                                <text x="25" y="154" class="chart-axis-text">100</text>
+                                <text x="25" y="194" class="chart-axis-text">0</text>
+
+                                <!-- Jan -->
+                                <rect x="70" y="65" width="12" height="125" fill="#1664c0" rx="2"/>
+                                <rect x="85" y="72" width="12" height="118" fill="#38a169" rx="2"/>
+                                <text x="83" y="210" class="chart-axis-text" text-anchor="middle">Jan</text>
+
+                                <!-- Feb -->
+                                <rect x="130" y="78" width="12" height="112" fill="#1664c0" rx="2"/>
+                                <rect x="145" y="70" width="12" height="120" fill="#38a169" rx="2"/>
+                                <text x="143" y="210" class="chart-axis-text" text-anchor="middle">Feb</text>
+
+                                <!-- Mar -->
+                                <rect x="190" y="55" width="12" height="135" fill="#1664c0" rx="2"/>
+                                <rect x="205" y="62" width="12" height="128" fill="#38a169" rx="2"/>
+                                <text x="203" y="210" class="chart-axis-text" text-anchor="middle">Mar</text>
+
+                                <!-- Apr -->
+                                <rect x="250" y="48" width="12" height="142" fill="#1664c0" rx="2"/>
+                                <rect x="265" y="52" width="12" height="138" fill="#38a169" rx="2"/>
+                                <text x="263" y="210" class="chart-axis-text" text-anchor="middle">Apr</text>
+
+                                <!-- May -->
+                                <rect x="310" y="60" width="12" height="130" fill="#1664c0" rx="2"/>
+                                <rect x="325" y="66" width="12" height="124" fill="#38a169" rx="2"/>
+                                <text x="323" y="210" class="chart-axis-text" text-anchor="middle">May</text>
+
+                                <!-- Jun -->
+                                <rect x="370" y="42" width="12" height="148" fill="#1664c0" rx="2"/>
+                                <rect x="385" y="46" width="12" height="144" fill="#38a169" rx="2"/>
+                                <text x="383" y="210" class="chart-axis-text" text-anchor="middle">Jun</text>
+
+                                <!-- Jul -->
+                                <rect x="430" y="32" width="12" height="158" fill="#1664c0" rx="2"/>
+                                <rect x="445" y="38" width="12" height="152" fill="#38a169" rx="2"/>
+                                <text x="443" y="210" class="chart-axis-text" text-anchor="middle">Jul</text>
+                            </svg>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot dark-blue-dot"></span> Admissions</span>
+                            <span class="legend-item"><span class="dot green-dot"></span> Discharges</span>
+                        </div>
+                    </div>
+
+                    <!-- Occupancy Trend Area Chart -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Occupancy Trend</h2>
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 500 220" class="svg-chart">
+                                <defs>
+                                    <linearGradient id="occupancyGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#3182ce" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#3182ce" stop-opacity="0.0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Grid Lines -->
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+                                <line x1="40" y1="190" x2="480" y2="190" class="chart-grid-line"/>
+
+                                <!-- Y-Axis Labels -->
+                                <text x="25" y="34" class="chart-axis-text">100%</text>
+                                <text x="25" y="74" class="chart-axis-text">94%</text>
+                                <text x="25" y="114" class="chart-axis-text">86%</text>
+                                <text x="25" y="154" class="chart-axis-text">78%</text>
+                                <text x="25" y="194" class="chart-axis-text">70%</text>
+
+                                <!-- Area & Curve -->
+                                <path d="M 70 148 C 110 168, 170 120, 220 100 C 270 85, 320 115, 370 70 C 420 80, 450 90, 470 95 L 470 190 L 70 190 Z" fill="url(#occupancyGrad)"/>
+                                <path d="M 70 148 C 110 168, 170 120, 220 100 C 270 85, 320 115, 370 70 C 420 80, 450 90, 470 95" fill="none" stroke="#3182ce" stroke-width="2.5"/>
+
+                                <!-- Data Dots -->
+                                <circle cx="70" cy="148" r="3.5" fill="#3182ce"/>
+                                <circle cx="136" cy="165" r="3.5" fill="#3182ce"/>
+                                <circle cx="203" cy="112" r="3.5" fill="#3182ce"/>
+                                <circle cx="270" cy="98" r="3.5" fill="#3182ce"/>
+                                <circle cx="336" cy="120" r="3.5" fill="#3182ce"/>
+                                <circle cx="403" cy="70" r="3.5" fill="#3182ce"/>
+                                <circle cx="470" cy="95" r="3.5" fill="#3182ce"/>
+
+                                <!-- X-Axis Labels -->
+                                <text x="70" y="210" class="chart-axis-text" text-anchor="middle">Jan</text>
+                                <text x="136" y="210" class="chart-axis-text" text-anchor="middle">Feb</text>
+                                <text x="203" y="210" class="chart-axis-text" text-anchor="middle">Mar</text>
+                                <text x="270" y="210" class="chart-axis-text" text-anchor="middle">Apr</text>
+                                <text x="336" y="210" class="chart-axis-text" text-anchor="middle">May</text>
+                                <text x="403" y="210" class="chart-axis-text" text-anchor="middle">Jun</text>
+                                <text x="470" y="210" class="chart-axis-text" text-anchor="middle">Jul</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Component: Average Length of Stay Trend Line Chart with Tooltip -->
+                <div class="flow-card bar-chart-card">
+                    <h2 class="card-title">Average Length of Stay Trend</h2>
+                    <div class="bar-chart-wrapper" style="position: relative;">
+                        
+                        <!-- Tooltip Card for Mar -->
+                        <div class="chart-tooltip" style="position: absolute; left: 40%; top: 22%; transform: translateX(-50%);">
+                            <div class="tooltip-title">Mar</div>
+                            <div class="tooltip-body">Avg LOS : <strong>4.3 days</strong></div>
+                        </div>
+
+                        <svg viewBox="0 0 800 230" class="svg-chart">
+                            <!-- Grid Lines -->
+                            <line x1="40" y1="30" x2="780" y2="30" class="chart-grid-line"/>
+                            <line x1="40" y1="70" x2="780" y2="70" class="chart-grid-line"/>
+                            <line x1="40" y1="110" x2="780" y2="110" class="chart-grid-line"/>
+                            <line x1="40" y1="150" x2="780" y2="150" class="chart-grid-line"/>
+                            <line x1="40" y1="190" x2="780" y2="190" class="chart-grid-line"/>
+
+                            <!-- Y-Axis Labels -->
+                            <text x="25" y="34" class="chart-axis-text">5d</text>
+                            <text x="25" y="74" class="chart-axis-text">4.7d</text>
+                            <text x="25" y="114" class="chart-axis-text">4.3d</text>
+                            <text x="25" y="154" class="chart-axis-text">3.9d</text>
+                            <text x="25" y="194" class="chart-axis-text">3.5d</text>
+
+                            <!-- Curve Line (Orange) -->
+                            <path d="M 100 130 C 180 150, 260 120, 340 100 C 420 80, 500 90, 580 115 C 660 105, 720 115, 760 130" fill="none" stroke="#dd6b20" stroke-width="2.5"/>
+
+                            <!-- Dashed vertical indicator line for Mar -->
+                            <line x1="340" y1="100" x2="340" y2="190" stroke="#cbd5e0" stroke-dasharray="3 3"/>
+
+                            <!-- Data Points -->
+                            <circle cx="100" cy="130" r="4" fill="#dd6b20"/>
+                            <circle cx="220" cy="148" r="4" fill="#dd6b20"/>
+                            <circle cx="340" cy="100" r="5" fill="#dd6b20" stroke="#white" stroke-width="2"/>
+                            <circle cx="460" cy="85" r="4" fill="#dd6b20"/>
+                            <circle cx="580" cy="115" r="4" fill="#dd6b20"/>
+                            <circle cx="670" cy="108" r="4" fill="#dd6b20"/>
+                            <circle cx="760" cy="130" r="4" fill="#dd6b20"/>
+
+                            <!-- X-Axis Labels -->
+                            <text x="100" y="212" class="chart-axis-text" text-anchor="middle">Jan</text>
+                            <text x="220" y="212" class="chart-axis-text" text-anchor="middle">Feb</text>
+                            <text x="340" y="212" class="chart-axis-text" text-anchor="middle">Mar</text>
+                            <text x="460" y="212" class="chart-axis-text" text-anchor="middle">Apr</text>
+                            <text x="580" y="212" class="chart-axis-text" text-anchor="middle">May</text>
+                            <text x="670" y="212" class="chart-axis-text" text-anchor="middle">Jun</text>
+                            <text x="760" y="212" class="chart-axis-text" text-anchor="middle">Jul</text>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHospital Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="left-panel">
+            <div class="graphic-container">
+                <!-- Replace with an actual illustration or CSS shapes -->
+                <div class="hospital-icon">
+                    <div class="cross">+</div>
+                    <div class="building">
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                        <div class="window"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="left-content">
+                <h1>AI-Powered Hospital<br>Management System</h1>
+                <p>Intelligent bed utilization, real-time patient flow, and predictive analytics for modern healthcare.</p>
+                
+                <div class="badges">
+                    <span class="badge">Real-time Bed Tracking</span>
+                    <span class="badge">AI Predictions</span>
+                    <span class="badge">Patient Flow Analytics</span>
+                    <span class="badge">Smart Alerts</span>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-num">450+</span>
+                        <span class="stat-label">Total Beds</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">98%</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">12ms</span>
+                        <span class="stat-label">Response Time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="login-form-container">
+                <div class="logo">
+                    <div class="logo-icon">T</div>
+                    <div class="logo-text">
+                        <span class="logo-main">SmartHospital</span>
+                        <span class="logo-sub">BedIQ Platform</span>
+                    </div>
+                </div>
+                
+                <h2>Welcome back</h2>
+                <p class="subtitle">Sign in to your administrator account</p>
+                
+                <form id="loginForm" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" value="admin@smarthospital.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" value="password123" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <label class="remember-me">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="sign-in-btn">Sign In</button>
+                    
+                    <div class="demo-info">
+                        Demo credentials pre-filled <br> Click Sign In to access the dashboard
+                    </div>
+                </form>
+                
+                <div class="footer-text">
+                    Secured by 256-bit encryption · HIPAA Compliant
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

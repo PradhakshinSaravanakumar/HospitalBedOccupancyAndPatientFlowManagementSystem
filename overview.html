@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Overview - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item active">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Dashboard Overview</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Thursday, August 27, 2026 · 11:50 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 7 Top KPI Cards -->
+                <div class="kpi-container seven-cols">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL BEDS</span>
+                            <div class="kpi-icon blue-bg">🛏️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiTotalBeds">--</div>
+                        <div class="kpi-subtext">Configured in MongoDB</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">OCCUPIED</span>
+                            <div class="kpi-icon red-bg">👤</div>
+                        </div>
+                        <div class="kpi-value" id="kpiOccupiedBeds">--</div>
+                        <div class="kpi-subtext">Matches admitted patients</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVAILABLE</span>
+                            <div class="kpi-icon green-bg">📈</div>
+                        </div>
+                        <div class="kpi-value" id="kpiAvailableBeds">--</div>
+                        <div class="kpi-subtext">Ready for admission</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">ICU OCCUPANCY</span>
+                            <div class="kpi-icon red-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value">93%</div>
+                        <div class="kpi-subtext">↗️ Critical threshold</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">ADMISSIONS</span>
+                            <div class="kpi-icon blue-bg">➔</div>
+                        </div>
+                        <div class="kpi-value">23</div>
+                        <div class="kpi-subtext">Today so far</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">DISCHARGES</span>
+                            <div class="kpi-icon green-bg">✓</div>
+                        </div>
+                        <div class="kpi-value">18</div>
+                        <div class="kpi-subtext">Today so far</div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG LOS</span>
+                            <div class="kpi-icon orange-bg">⏱️</div>
+                        </div>
+                        <div class="kpi-value">4.2d</div>
+                        <div class="kpi-subtext">↘️ 0.3 from last week</div>
+                    </div>
+                </div>
+
+                <!-- Row 1: Bed Occupancy Trend & Today's Bed Status -->
+                <div class="grid-2-1">
+                    <div class="flow-card chart-card">
+                        <div class="card-header-flex">
+                            <h2 class="card-title">Bed Occupancy Trend — This Week</h2>
+                            <span class="fade-text" style="font-size: 0.8rem;">Updated live</span>
+                        </div>
+                        <div class="chart-wrapper" style="position: relative;">
+                            <!-- Dynamic Hover Tooltip -->
+                            <div class="chart-tooltip" id="trendTooltip" style="display: none; position: absolute; pointer-events: none; z-index: 100; min-width: 110px;">
+                                <div class="tooltip-title" id="trendTipDay">Thu</div>
+                                <div class="tooltip-body">Occupancy: <strong style="color: #3182ce;" id="trendTipVal">85%</strong></div>
+                            </div>
+
+                            <svg viewBox="0 0 500 185" class="svg-chart" id="trendSvg">
+                                <defs>
+                                    <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#3182ce" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#3182ce" stop-opacity="0.0"/>
+                                    </linearGradient>
+                                </defs>
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+
+                                <text x="25" y="34" class="chart-axis-text">100%</text>
+                                <text x="25" y="74" class="chart-axis-text">90%</text>
+                                <text x="25" y="114" class="chart-axis-text">80%</text>
+                                <text x="25" y="154" class="chart-axis-text">70%</text>
+
+                                <!-- Smooth Area & Interpolated Curve Line -->
+                                <path id="trendArea" fill="url(#trendGrad)" stroke="none"/>
+                                <path id="trendLine" fill="none" stroke="#3182ce" stroke-width="2.5"/>
+
+                                <!-- Dots -->
+                                <g id="trendDots"></g>
+
+                                <!-- Value Labels -->
+                                <g id="trendValues"></g>
+
+                                <!-- X-Axis Days -->
+                                <g id="trendXLabels">
+                                    <text x="50" y="172" class="chart-axis-text" text-anchor="middle">Mon</text>
+                                    <text x="120" y="172" class="chart-axis-text" text-anchor="middle">Tue</text>
+                                    <text x="190" y="172" class="chart-axis-text" text-anchor="middle">Wed</text>
+                                    <text x="260" y="172" class="chart-axis-text" text-anchor="middle">Thu</text>
+                                    <text x="330" y="172" class="chart-axis-text" text-anchor="middle">Fri</text>
+                                    <text x="400" y="172" class="chart-axis-text" text-anchor="middle">Sat</text>
+                                    <text x="470" y="172" class="chart-axis-text" text-anchor="middle">Sun</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Today's Bed Status Ring Chart -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Today's Bed Status</h2>
+                        <div class="donut-wrapper">
+                            <svg viewBox="0 0 160 160" class="donut-svg">
+                                <circle cx="80" cy="80" r="60" fill="transparent" stroke="#e53e3e" stroke-width="22" stroke-dasharray="270 377" stroke-dashoffset="0" />
+                                <circle cx="80" cy="80" r="60" fill="transparent" stroke="#38a169" stroke-dasharray="45 377" stroke-dashoffset="-275" stroke-width="22" />
+                                <circle cx="80" cy="80" r="60" fill="transparent" stroke="#dd6b20" stroke-dasharray="25 377" stroke-dashoffset="-323" stroke-width="22" />
+                                <circle cx="80" cy="80" r="60" fill="transparent" stroke="#3182ce" stroke-dasharray="15 377" stroke-dashoffset="-350" stroke-width="22" />
+                            </svg>
+                        </div>
+                        <div class="chart-legend flex-wrap-legend">
+                            <span class="legend-item"><span class="dot green-dot"></span> Available</span>
+                            <span class="legend-item"><span class="dot orange-dot"></span> Cleaning</span>
+                            <span class="legend-item"><span class="dot red-dot"></span> Occupied</span>
+                            <span class="legend-item"><span class="dot blue-dot"></span> Reserved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Ward-wise Occupancy & Patient Inflow/Outflow -->
+                <div class="grid-1-1">
+                    <!-- Ward-wise Occupancy Horizontal Bar Chart -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Ward-wise Occupancy</h2>
+                        <div class="horizontal-bars">
+                            <div class="hbar-item">
+                                <span class="hbar-label">ICU</span>
+                                <div class="hbar-track"><div class="hbar-fill red-fill" style="width: 93%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">Emergency</span>
+                                <div class="hbar-track"><div class="hbar-fill red-fill" style="width: 90%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">Cardiology</span>
+                                <div class="hbar-track"><div class="hbar-fill orange-fill" style="width: 85%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">Neurology</span>
+                                <div class="hbar-track"><div class="hbar-fill blue-fill" style="width: 76%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">Orthopedic</span>
+                                <div class="hbar-track"><div class="hbar-fill blue-fill" style="width: 73%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">Pediatrics</span>
+                                <div class="hbar-track"><div class="hbar-fill blue-fill" style="width: 62%;"></div></div>
+                            </div>
+                            <div class="hbar-item">
+                                <span class="hbar-label">General</span>
+                                <div class="hbar-track"><div class="hbar-fill blue-fill" style="width: 72%;"></div></div>
+                            </div>
+                            <div class="hbar-axis">
+                                <span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient Inflow / Outflow — Today -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Patient Inflow / Outflow — Today</h2>
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 500 180" class="svg-chart">
+                                <defs>
+                                    <linearGradient id="inflowGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#3182ce" stop-opacity="0.2"/>
+                                        <stop offset="100%" stop-color="#3182ce" stop-opacity="0.0"/>
+                                    </linearGradient>
+                                </defs>
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+
+                                <text x="25" y="34" class="chart-axis-text">12</text>
+                                <text x="25" y="74" class="chart-axis-text">9</text>
+                                <text x="25" y="114" class="chart-axis-text">6</text>
+                                <text x="25" y="154" class="chart-axis-text">3</text>
+
+                                <path d="M 40 150 C 90 110, 130 30, 180 50 C 230 70, 240 120, 280 90 C 330 60, 390 130, 440 140 C 460 145, 470 130, 480 125 L 480 150 L 40 150 Z" fill="url(#inflowGrad)"/>
+                                <path d="M 40 150 C 90 110, 130 30, 180 50 C 230 70, 240 120, 280 90 C 330 60, 390 130, 440 140 C 460 145, 470 130, 480 125" fill="none" stroke="#2b6cb0" stroke-width="2.5"/>
+                                <path d="M 40 180 C 100 140, 160 90, 220 80 C 280 70, 320 60, 370 100 C 420 130, 450 150, 480 165" fill="none" stroke="#38a169" stroke-width="2.5"/>
+
+                                <text x="40" y="170" class="chart-axis-text">06:00</text>
+                                <text x="105" y="170" class="chart-axis-text">08:00</text>
+                                <text x="170" y="170" class="chart-axis-text">10:00</text>
+                                <text x="235" y="170" class="chart-axis-text">12:00</text>
+                                <text x="300" y="170" class="chart-axis-text">14:00</text>
+                                <text x="365" y="170" class="chart-axis-text">16:00</text>
+                                <text x="425" y="170" class="chart-axis-text">18:00</text>
+                                <text x="475" y="170" class="chart-axis-text">20:00</text>
+                            </svg>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot blue-dot"></span> Admissions</span>
+                            <span class="legend-item"><span class="dot green-dot"></span> Discharges</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Ward Status Overview Table & AI Insights / Active Alerts -->
+                <div class="grid-2-1">
+                    <!-- Ward Status Overview Table -->
+                    <div class="flow-card table-card">
+                        <h2 class="card-title">Ward Status Overview</h2>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>WARD NAME</th>
+                                        <th>TOTAL</th>
+                                        <th>OCCUPIED</th>
+                                        <th>AVAILABLE</th>
+                                        <th>OCCUPANCY</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="bold-text">ICU</td>
+                                        <td>30</td>
+                                        <td>28</td>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill red-fill" style="width: 93%;"></div><span class="bold-text red-text">93%</span></div>
+                                        </td>
+                                        <td><span class="status-badge critical">● Critical</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Emergency</td>
+                                        <td>40</td>
+                                        <td>36</td>
+                                        <td>4</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill red-fill" style="width: 90%;"></div><span class="bold-text red-text">90%</span></div>
+                                        </td>
+                                        <td><span class="status-badge critical">● Critical</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Cardiology</td>
+                                        <td>60</td>
+                                        <td>51</td>
+                                        <td>9</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill orange-fill" style="width: 85%;"></div><span class="bold-text orange-text">85%</span></div>
+                                        </td>
+                                        <td><span class="status-badge warning">● Warning</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Neurology</td>
+                                        <td>50</td>
+                                        <td>38</td>
+                                        <td>12</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill blue-fill" style="width: 76%;"></div><span class="bold-text blue-text">76%</span></div>
+                                        </td>
+                                        <td><span class="status-badge normal">● Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Orthopedic</td>
+                                        <td>55</td>
+                                        <td>40</td>
+                                        <td>15</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill blue-fill" style="width: 73%;"></div><span class="bold-text blue-text">73%</span></div>
+                                        </td>
+                                        <td><span class="status-badge normal">● Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Pediatrics</td>
+                                        <td>45</td>
+                                        <td>28</td>
+                                        <td>17</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill blue-fill" style="width: 62%;"></div><span class="bold-text blue-text">62%</span></div>
+                                        </td>
+                                        <td><span class="status-badge normal">● Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Maternity</td>
+                                        <td>40</td>
+                                        <td>22</td>
+                                        <td>18</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill blue-fill" style="width: 55%;"></div><span class="bold-text blue-text">55%</span></div>
+                                        </td>
+                                        <td><span class="status-badge normal">● Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">General</td>
+                                        <td>130</td>
+                                        <td>94</td>
+                                        <td>36</td>
+                                        <td>
+                                            <div class="table-progress"><div class="tp-fill blue-fill" style="width: 72%;"></div><span class="bold-text blue-text">72%</span></div>
+                                        </td>
+                                        <td><span class="status-badge normal">● Normal</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: AI Insights & Active Alerts -->
+                    <div class="vertical-cards">
+                        <!-- AI Insights Card -->
+                        <div class="flow-card">
+                            <div class="card-header-flex">
+                                <h2 class="card-title">AI Insights</h2>
+                                <span class="pill blue-pill">Live</span>
+                            </div>
+                            <div class="insights-list">
+                                <div class="insight-item orange-tint">
+                                    <div class="insight-icon">🔄</div>
+                                    <div>
+                                        <div class="insight-sub">Tomorrow's Occupancy</div>
+                                        <div class="insight-val">89%</div>
+                                        <div class="insight-detail">↑ from today's 86%</div>
+                                    </div>
+                                </div>
+
+                                <div class="insight-item red-tint">
+                                    <div class="insight-icon">⚠️</div>
+                                    <div>
+                                        <div class="insight-sub">Expected Bed Shortage</div>
+                                        <div class="insight-val red-text">ICU: 3 beds</div>
+                                        <div class="insight-detail">By 12:00 tomorrow</div>
+                                    </div>
+                                </div>
+
+                                <div class="insight-item red-tint">
+                                    <div class="insight-icon">🚨</div>
+                                    <div>
+                                        <div class="insight-sub">Overcrowded Wards</div>
+                                        <div class="insight-val red-text">2 wards</div>
+                                        <div class="insight-detail">ICU & Emergency</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="smart-recs">
+                                <div class="rec-heading">Smart Recommendations</div>
+                                <ul>
+                                    <li>✓ Pre-authorize 3 Step-Down beds for ICU overflow</li>
+                                    <li>✓ Expedite 5 pending discharge orders in Cardiology</li>
+                                    <li>✓ Alert on-call team for Emergency surge protocol</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Active Alerts Card -->
+                        <div class="flow-card">
+                            <h2 class="card-title">Active Alerts</h2>
+                            <div class="active-alerts-list">
+                                <div class="mini-alert red-alert">
+                                    <span class="mini-icon">✕</span>
+                                    <div>
+                                        <div class="mini-title">ICU at 93% Capacity</div>
+                                        <div class="mini-sub">ICU · 2 min ago</div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-alert red-alert">
+                                    <span class="mini-icon">✕</span>
+                                    <div>
+                                        <div class="mini-title">Emergency Ward Overcrowded</div>
+                                        <div class="mini-sub">Emergency · 8 min ago</div>
+                                    </div>
+                                </div>
+
+                                <div class="mini-alert orange-alert">
+                                    <span class="mini-icon">⚠️</span>
+                                    <div>
+                                        <div class="mini-title">Delayed Discharge — Cardiology</div>
+                                        <div class="mini-sub">Cardiology · 25 min ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="alerts.html" class="view-all-link">View all 7 alerts →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 4: Admissions vs Discharges — Monthly Comparison -->
+                <div class="flow-card bar-chart-card">
+                    <h2 class="card-title">Admissions vs Discharges — Monthly Comparison</h2>
+                    <div class="bar-chart-wrapper">
+                        <svg viewBox="0 0 800 200" class="svg-chart">
+                            <line x1="40" y1="30" x2="780" y2="30" class="chart-grid-line"/>
+                            <line x1="40" y1="70" x2="780" y2="70" class="chart-grid-line"/>
+                            <line x1="40" y1="110" x2="780" y2="110" class="chart-grid-line"/>
+                            <line x1="40" y1="150" x2="780" y2="150" class="chart-grid-line"/>
+
+                            <text x="25" y="34" class="chart-axis-text">400</text>
+                            <text x="25" y="74" class="chart-axis-text">300</text>
+                            <text x="25" y="114" class="chart-axis-text">200</text>
+                            <text x="25" y="154" class="chart-axis-text">100</text>
+                            <text x="25" y="194" class="chart-axis-text">0</text>
+
+                            <!-- Jan -->
+                            <rect x="100" y="65" width="16" height="125" fill="#1664c0" rx="2"/>
+                            <rect x="120" y="72" width="16" height="118" fill="#38a169" rx="2"/>
+                            <text x="118" y="210" class="chart-axis-text" text-anchor="middle">Jan</text>
+
+                            <!-- Feb -->
+                            <rect x="200" y="78" width="16" height="112" fill="#1664c0" rx="2"/>
+                            <rect x="220" y="70" width="16" height="120" fill="#38a169" rx="2"/>
+                            <text x="218" y="210" class="chart-axis-text" text-anchor="middle">Feb</text>
+
+                            <!-- Mar -->
+                            <rect x="300" y="55" width="16" height="135" fill="#1664c0" rx="2"/>
+                            <rect x="320" y="62" width="16" height="128" fill="#38a169" rx="2"/>
+                            <text x="318" y="210" class="chart-axis-text" text-anchor="middle">Mar</text>
+
+                            <!-- Apr -->
+                            <rect x="400" y="48" width="16" height="142" fill="#1664c0" rx="2"/>
+                            <rect x="420" y="52" width="16" height="138" fill="#38a169" rx="2"/>
+                            <text x="418" y="210" class="chart-axis-text" text-anchor="middle">Apr</text>
+
+                            <!-- May -->
+                            <rect x="500" y="60" width="16" height="130" fill="#1664c0" rx="2"/>
+                            <rect x="520" y="66" width="16" height="124" fill="#38a169" rx="2"/>
+                            <text x="518" y="210" class="chart-axis-text" text-anchor="middle">May</text>
+
+                            <!-- Jun -->
+                            <rect x="600" y="42" width="16" height="148" fill="#1664c0" rx="2"/>
+                            <rect x="620" y="46" width="16" height="144" fill="#38a169" rx="2"/>
+                            <text x="618" y="210" class="chart-axis-text" text-anchor="middle">Jun</text>
+
+                            <!-- Jul -->
+                            <rect x="700" y="32" width="16" height="158" fill="#1664c0" rx="2"/>
+                            <rect x="720" y="38" width="16" height="152" fill="#38a169" rx="2"/>
+                            <text x="718" y="210" class="chart-axis-text" text-anchor="middle">Jul</text>
+                        </svg>
+                    </div>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="dot dark-blue-dot"></span> Admissions</span>
+                        <span class="legend-item"><span class="dot green-dot"></span> Discharges</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+
+        // Bed Occupancy Trend Dynamic Spline & Interactive Tooltip
+        function renderTrendChart() {
+            const trendData = [
+                { day: 'Mon', val: 78 },
+                { day: 'Tue', val: 82 },
+                { day: 'Wed', val: 80 },
+                { day: 'Thu', val: 85 },
+                { day: 'Fri', val: 84 },
+                { day: 'Sat', val: 75 },
+                { day: 'Sun', val: 79 }
+            ];
+
+            const xCoords = [50, 120, 190, 260, 330, 400, 470];
+            const pts = trendData.map((d, i) => {
+                // 100% = 30px, 70% = 150px (span = 120px for 30%, i.e. 4px per 1%)
+                const clamped = Math.max(70, Math.min(100, d.val));
+                const y = 150 - (clamped - 70) * 4;
+                return { x: xCoords[i], y: Math.round(y * 10) / 10, val: d.val, day: d.day };
+            });
+
+            // Smooth cubic bezier spline passing through every point
+            let dCurve = `M ${pts[0].x} ${pts[0].y}`;
+            for (let i = 0; i < pts.length - 1; i++) {
+                const p0 = pts[i === 0 ? 0 : i - 1];
+                const p1 = pts[i];
+                const p2 = pts[i + 1];
+                const p3 = pts[i + 2 >= pts.length ? pts.length - 1 : i + 2];
+
+                const cp1x = p1.x + (p2.x - p0.x) / 6;
+                const cp1y = p1.y + (p2.y - p0.y) / 6;
+                const cp2x = p2.x - (p3.x - p1.x) / 6;
+                const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+                dCurve += ` C ${cp1x.toFixed(1)} ${cp1y.toFixed(1)}, ${cp2x.toFixed(1)} ${cp2y.toFixed(1)}, ${p2.x} ${p2.y}`;
+            }
+
+            const pathLine = document.getElementById('trendLine');
+            if (pathLine) pathLine.setAttribute('d', dCurve);
+
+            const pathArea = document.getElementById('trendArea');
+            if (pathArea) {
+                const dArea = `${dCurve} L ${pts[pts.length - 1].x} 150 L ${pts[0].x} 150 Z`;
+                pathArea.setAttribute('d', dArea);
+            }
+
+            // Render Dots with hover handlers
+            const dotsGroup = document.getElementById('trendDots');
+            if (dotsGroup) {
+                dotsGroup.innerHTML = pts.map(p => `
+                    <circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#3182ce" stroke="#ffffff" stroke-width="1.8" style="cursor:pointer;"
+                            onmouseenter="showTrendTip(event, '${p.day}', ${p.val})"
+                            onmouseleave="hideTrendTip()">
+                    </circle>
+                `).join('');
+            }
+
+            // Render percentage value labels above each dot
+            const valsGroup = document.getElementById('trendValues');
+            if (valsGroup) {
+                valsGroup.innerHTML = pts.map(p => `
+                    <text x="${p.x}" y="${p.y - 8}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2b6cb0">${p.val}%</text>
+                `).join('');
+            }
+        }
+
+        function showTrendTip(e, day, val) {
+            const tip = document.getElementById('trendTooltip');
+            if (!tip) return;
+            document.getElementById('trendTipDay').textContent = day;
+            document.getElementById('trendTipVal').textContent = val + '%';
+            tip.style.display = 'block';
+            const rect = e.target.getBoundingClientRect();
+            const parentRect = e.target.closest('.chart-wrapper').getBoundingClientRect();
+            tip.style.left = (rect.left - parentRect.left - 35) + 'px';
+            tip.style.top = (rect.top - parentRect.top - 60) + 'px';
+        }
+
+        function hideTrendTip() {
+            const tip = document.getElementById('trendTooltip');
+            if (tip) tip.style.display = 'none';
+        }
+
+        renderTrendChart();
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

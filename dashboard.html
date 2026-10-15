@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ward Management - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="#" class="menu-item active">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Ward Management</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Friday, July 31, 2026 - 09:49 PM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-body">
+                <!-- Top KPIs -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL WARDS</span>
+                            <div class="kpi-icon blue-bg">🏥</div>
+                        </div>
+                        <div class="kpi-value" id="kpiTotalWards">8</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CRITICAL WARDS</span>
+                            <div class="kpi-icon red-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value" id="kpiCriticalWards">2</div>
+                        <div class="kpi-subtext" id="kpiCriticalSubtext">ICU, Emergency</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG OCCUPANCY</span>
+                            <div class="kpi-icon orange-bg">📉</div>
+                        </div>
+                        <div class="kpi-value" id="kpiAvgOccupancy">76%</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL CAPACITY</span>
+                            <div class="kpi-icon green-bg">🛏️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiTotalCapacity">450</div>
+                    </div>
+                </div>
+
+                <!-- Section Header with Add Ward Button -->
+                <div class="ward-section-header">
+                    <h2>Wards Overview</h2>
+                    <button class="btn-primary" onclick="openAddWardModal()">+ Add New Ward</button>
+                </div>
+
+                <!-- Ward Cards Grid -->
+                <div class="ward-grid">
+                    <!-- ICU Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">ICU Ward</h3>
+                                <div class="ward-subtitle">50 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge critical">● Critical</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">28</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">2</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value red-text">93%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar critical" style="width: 93%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Emergency Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Emergency Ward</h3>
+                                <div class="ward-subtitle">40 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge critical">● Critical</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">36</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">4</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value red-text">98%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar critical" style="width: 98%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cardiology Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Cardiology Ward</h3>
+                                <div class="ward-subtitle">60 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge warning">● Warning</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">51</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">9</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value orange-text">85%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar warning" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Neurology Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Neurology Ward</h3>
+                                <div class="ward-subtitle">50 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge normal">● Normal</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">38</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">12</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value blue-text">76%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar normal" style="width: 76%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orthopedic Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Orthopedic Ward</h3>
+                                <div class="ward-subtitle">55 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge normal">● Normal</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">40</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">15</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value blue-text">73%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar normal" style="width: 73%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pediatrics Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Pediatrics Ward</h3>
+                                <div class="ward-subtitle">45 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge normal">● Normal</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">28</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">17</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value blue-text">62%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar normal" style="width: 62%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Maternity Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">Maternity Ward</h3>
+                                <div class="ward-subtitle">40 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge normal">● Normal</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">22</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">18</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value blue-text">55%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar normal" style="width: 55%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- General Ward -->
+                    <div class="ward-card">
+                        <div class="ward-header">
+                            <div>
+                                <h3 class="ward-title">General Ward</h3>
+                                <div class="ward-subtitle">130 total beds</div>
+                            </div>
+                            <div class="ward-actions">
+                                <span class="status-badge normal">● Normal</span>
+                                <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="ward-stats">
+                            <div class="stat-group">
+                                <div class="stat-label">OCCUPIED</div>
+                                <div class="stat-value">94</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">AVAILABLE</div>
+                                <div class="stat-value green-text">36</div>
+                            </div>
+                            <div class="stat-group">
+                                <div class="stat-label">UTILIZATION</div>
+                                <div class="stat-value blue-text">72%</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar normal" style="width: 72%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Ward Modal -->
+    <div id="addWardModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Add New Ward</h3>
+                <button class="modal-close-btn" onclick="closeAddWardModal()">&times;</button>
+            </div>
+            <form id="addWardForm" onsubmit="handleAddWard(event)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="wardName">Ward Name</label>
+                        <input type="text" id="wardName" placeholder="e.g. Oncology Ward" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="totalBeds">Total Beds</label>
+                            <input type="number" id="totalBeds" min="1" placeholder="e.g. 50" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="occupiedBeds">Occupied Beds</label>
+                            <input type="number" id="occupiedBeds" min="0" placeholder="e.g. 20" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="wardStatus">Status / Category</label>
+                        <select id="wardStatus">
+                            <option value="auto">Auto (Based on Utilization)</option>
+                            <option value="normal">Normal</option>
+                            <option value="warning">Warning</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeAddWardModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Ward</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function updateKPIs() {
+            const cards = document.querySelectorAll('.ward-card');
+            let totalWardsCount = cards.length;
+            let criticalWardsCount = 0;
+            let criticalNames = [];
+            let totalCapacitySum = 0;
+            let totalOccupiedSum = 0;
+
+            cards.forEach(card => {
+                const subtitleText = card.querySelector('.ward-subtitle').textContent;
+                const totalBedsMatch = subtitleText.match(/(\d+)/);
+                const totalBeds = totalBedsMatch ? parseInt(totalBedsMatch[1]) : 0;
+                
+                const statValues = card.querySelectorAll('.stat-value');
+                const occupied = statValues[0] ? parseInt(statValues[0].textContent) || 0 : 0;
+                
+                const badge = card.querySelector('.status-badge');
+                if (badge && badge.classList.contains('critical')) {
+                    criticalWardsCount++;
+                    const title = card.querySelector('.ward-title').textContent.replace(' Ward', '');
+                    criticalNames.push(title);
+                }
+
+                totalCapacitySum += totalBeds;
+                totalOccupiedSum += occupied;
+            });
+
+            const avgOccupancy = totalCapacitySum > 0 ? Math.round((totalOccupiedSum / totalCapacitySum) * 100) : 0;
+
+            document.getElementById('kpiTotalWards').textContent = totalWardsCount;
+            document.getElementById('kpiCriticalWards').textContent = criticalWardsCount;
+            document.getElementById('kpiCriticalSubtext').textContent = criticalNames.length > 0 ? criticalNames.join(', ') : 'None';
+            document.getElementById('kpiAvgOccupancy').textContent = avgOccupancy + '%';
+            document.getElementById('kpiTotalCapacity').textContent = totalCapacitySum;
+        }
+
+        function deleteWard(button) {
+            const card = button.closest('.ward-card');
+            const wardTitle = card.querySelector('.ward-title').textContent;
+            if (confirm(`Are you sure you want to delete ${wardTitle}?`)) {
+                card.remove();
+                updateKPIs();
+            }
+        }
+
+        function openAddWardModal() {
+            document.getElementById('addWardModal').classList.add('active');
+        }
+
+        function closeAddWardModal() {
+            document.getElementById('addWardModal').classList.remove('active');
+            document.getElementById('addWardForm').reset();
+        }
+
+        function handleAddWard(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('wardName').value.trim();
+            const wardName = nameInput.endsWith('Ward') ? nameInput : nameInput + ' Ward';
+            const totalBeds = parseInt(document.getElementById('totalBeds').value);
+            const occupiedBeds = parseInt(document.getElementById('occupiedBeds').value);
+            const selectedStatus = document.getElementById('wardStatus').value;
+
+            if (occupiedBeds > totalBeds) {
+                alert('Occupied beds cannot be greater than total beds!');
+                return;
+            }
+
+            const availableBeds = totalBeds - occupiedBeds;
+            const utilization = Math.round((occupiedBeds / totalBeds) * 100);
+
+            let statusClass = 'normal';
+            let statusLabel = '● Normal';
+            let utilizationColorClass = 'blue-text';
+            let progressClass = 'normal';
+
+            if (selectedStatus === 'critical' || (selectedStatus === 'auto' && utilization >= 90)) {
+                statusClass = 'critical';
+                statusLabel = '● Critical';
+                utilizationColorClass = 'red-text';
+                progressClass = 'critical';
+            } else if (selectedStatus === 'warning' || (selectedStatus === 'auto' && utilization >= 80)) {
+                statusClass = 'warning';
+                statusLabel = '● Warning';
+                utilizationColorClass = 'orange-text';
+                progressClass = 'warning';
+            }
+
+            const wardGrid = document.querySelector('.ward-grid');
+            const card = document.createElement('div');
+            card.className = 'ward-card';
+            card.innerHTML = `
+                <div class="ward-header">
+                    <div>
+                        <h3 class="ward-title">${wardName}</h3>
+                        <div class="ward-subtitle">${totalBeds} total beds</div>
+                    </div>
+                    <div class="ward-actions">
+                        <span class="status-badge ${statusClass}">${statusLabel}</span>
+                        <button class="delete-ward-btn" onclick="deleteWard(this)" title="Delete Ward">🗑️</button>
+                    </div>
+                </div>
+                <div class="ward-stats">
+                    <div class="stat-group">
+                        <div class="stat-label">OCCUPIED</div>
+                        <div class="stat-value">${occupiedBeds}</div>
+                    </div>
+                    <div class="stat-group">
+                        <div class="stat-label">AVAILABLE</div>
+                        <div class="stat-value green-text">${availableBeds}</div>
+                    </div>
+                    <div class="stat-group">
+                        <div class="stat-label">UTILIZATION</div>
+                        <div class="stat-value ${utilizationColorClass}">${utilization}%</div>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar ${progressClass}" style="width: ${utilization}%;"></div>
+                </div>
+            `;
+
+            wardGrid.appendChild(card);
+            updateKPIs();
+            closeAddWardModal();
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

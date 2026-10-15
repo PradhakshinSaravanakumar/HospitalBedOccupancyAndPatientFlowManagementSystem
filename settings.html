@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item active">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Settings</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Thursday, August 27, 2026 - 11:31 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <div id="settingsToast" class="toast-notification">Settings saved successfully!</div>
+
+                <!-- 2x2 Settings Grid -->
+                <div class="settings-grid">
+                    
+                    <!-- Card 1: Hospital Profile -->
+                    <div class="settings-card">
+                        <h2 class="card-title">Hospital Profile</h2>
+                        <form onsubmit="handleSaveSettings(event, 'Hospital Profile')">
+                            <div class="form-group">
+                                <label for="hospName">Hospital Name</label>
+                                <input type="text" id="hospName" value="SmartHospital Medical Center" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospAddress">Address</label>
+                                <input type="text" id="hospAddress" value="123 Healthcare Ave, Medical District" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospCap">Total Bed Capacity</label>
+                                <input type="number" id="hospCap" value="450" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospLicense">License Number</label>
+                                <input type="text" id="hospLicense" value="HC-2024-48281" required>
+                            </div>
+                            <button type="submit" class="btn-primary full-width-btn">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Card 2: Alert Thresholds -->
+                    <div class="settings-card">
+                        <h2 class="card-title">Alert Thresholds</h2>
+                        <form onsubmit="handleSaveSettings(event, 'Alert Thresholds')">
+                            <div class="form-group">
+                                <label for="critOcc">Critical Occupancy (%)</label>
+                                <input type="number" id="critOcc" value="90" min="1" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="warnOcc">Warning Occupancy (%)</label>
+                                <input type="number" id="warnOcc" value="80" min="1" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="icuCrit">ICU Critical Threshold (%)</label>
+                                <input type="number" id="icuCrit" value="85" min="1" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="maxLos">Max LOS Alert (days)</label>
+                                <input type="number" id="maxLos" value="7" min="1" required>
+                            </div>
+                            <button type="submit" class="btn-primary full-width-btn">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Card 3: AI Model Settings -->
+                    <div class="settings-card">
+                        <h2 class="card-title">AI Model Settings</h2>
+                        <form onsubmit="handleSaveSettings(event, 'AI Model Settings')">
+                            <div class="form-group">
+                                <label for="predHorizon">Prediction Horizon (days)</label>
+                                <input type="number" id="predHorizon" value="7" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="refreshInterval">Model Refresh Interval</label>
+                                <select id="refreshInterval">
+                                    <option value="Every 6 hours" selected>Every 6 hours</option>
+                                    <option value="Every 12 hours">Every 12 hours</option>
+                                    <option value="Daily">Daily</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="minConf">Minimum Confidence (%)</label>
+                                <input type="number" id="minConf" value="75" min="1" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dataWindow">Training Data Window</label>
+                                <select id="dataWindow">
+                                    <option value="90 days" selected>90 days</option>
+                                    <option value="180 days">180 days</option>
+                                    <option value="1 year">1 year</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary full-width-btn">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Card 4: Notification Settings -->
+                    <div class="settings-card">
+                        <h2 class="card-title">Notification Settings</h2>
+                        <form onsubmit="handleSaveSettings(event, 'Notification Settings')">
+                            <div class="form-group">
+                                <label for="alertEmail">Alert Email</label>
+                                <input type="email" id="alertEmail" value="admin@smarthospital.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="smsNumber">SMS Number</label>
+                                <input type="text" id="smsNumber" value="+1 (555) 100-2000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="escDelay">Escalation Delay (min)</label>
+                                <input type="number" id="escDelay" value="15" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="digestFreq">Digest Frequency</label>
+                                <select id="digestFreq">
+                                    <option value="Hourly" selected>Hourly</option>
+                                    <option value="Daily">Daily</option>
+                                    <option value="Disabled">Disabled</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary full-width-btn">Save Changes</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function handleSaveSettings(e, sectionName) {
+            e.preventDefault();
+            const toast = document.getElementById('settingsToast');
+            toast.textContent = `✓ ${sectionName} saved successfully!`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f7f9fc;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Left Panel styling */
+.left-panel {
+    flex: 1.2;
+    background: radial-gradient(circle at center, #1b5f88 0%, #0d385a 60%, #061c31 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Simulating the concentric rings background */
+.left-panel::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.left-panel::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.graphic-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* CSS Art for Hospital */
+.hospital-icon {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.8;
+}
+
+.building {
+    width: 120px;
+    height: 140px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.window {
+    background: rgba(255,255,255,0.3);
+    border-radius: 4px;
+}
+
+.cross {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    background: rgba(255,255,255,0.2);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.left-content {
+    flex: 1;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+}
+
+.left-content h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.left-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+.badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+    transition: background 0.3s ease;
+}
+.badge:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stats {
+    display: flex;
+    gap: 60px;
+    margin-top: auto; /* Pushes stats to the bottom */
+    padding-top: 40px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+}
+
+/* Right Panel styling */
+.right-panel {
+    flex: 0.8;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    align-self: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #127575; /* Teal color */
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-weight: 700;
+    color: #1a202c;
+    font-size: 1.1rem;
+}
+
+.logo-sub {
+    font-size: 0.75rem;
+    color: #718096;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #1a202c;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.subtitle {
+    color: #718096;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.input-group input {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+    background-color: white;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4a5568;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.sign-in-btn {
+    background-color: #127575; /* Teal matching logo */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+.sign-in-btn:hover {
+    background-color: #0f6161;
+}
+
+.demo-info {
+    background-color: #f0f7ff;
+    border: 1px dashed #bee3f8;
+    color: #3182ce;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.footer-text {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #a0aec0;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+    }
+    .left-panel {
+        display: none; /* Hide left panel on small screens */
+    }
+    .right-panel {
+        flex: 1;
+    }
+}

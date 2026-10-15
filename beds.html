@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Management - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item active">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Bed Management</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Friday, July 31, 2026 - 09:56 PM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 5 KPIs -->
+                <div class="kpi-container five-cols">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">TOTAL BEDS</span>
+                            <div class="kpi-icon blue-bg">🛏️</div>
+                        </div>
+                        <div class="kpi-value" id="kpiTotalBeds">--</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVAILABLE</span>
+                            <div class="kpi-icon green-bg">✓</div>
+                        </div>
+                        <div class="kpi-value" id="kpiAvailableBeds">--</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">OCCUPIED</span>
+                            <div class="kpi-icon red-bg">👤</div>
+                        </div>
+                        <div class="kpi-value" id="kpiOccupiedBeds">--</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">CLEANING</span>
+                            <div class="kpi-icon orange-bg">🔄</div>
+                        </div>
+                        <div class="kpi-value" id="kpiCleaningBeds">--</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">RESERVED / MAINT</span>
+                            <div class="kpi-icon blue-bg">📅</div>
+                        </div>
+                        <div class="kpi-value" id="kpiReservedBeds">--</div>
+                    </div>
+                </div>
+
+                <!-- Bed Inventory Section -->
+                <div class="inventory-section">
+                    <div class="inventory-header">
+                        <h2>Bed Inventory</h2>
+                        <button class="btn-primary" onclick="openAddBedModal()">+ Add Bed / Patient</button>
+                    </div>
+                    
+                    <div class="inventory-controls">
+                        <div class="search-bar inventory-search">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="bedSearchInput" placeholder="Search beds, patients, wards..." oninput="filterBeds()">
+                        </div>
+                        <select id="wardFilter" class="filter-select" onchange="filterBeds()">
+                            <option value="All">All Wards</option>
+                            <option value="ICU">ICU</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Orthopedic">Orthopedic</option>
+                            <option value="General">General</option>
+                        </select>
+                        <select id="typeFilter" class="filter-select" onchange="filterBeds()">
+                            <option value="All">All Bed Types</option>
+                            <option value="ICU">ICU</option>
+                            <option value="Emergency">Emergency</option>
+                            <option value="General">General</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select" onchange="filterBeds()">
+                            <option value="All">All Statuses</option>
+                            <option value="Occupied">Occupied</option>
+                            <option value="Available">Available</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Reserved">Reserved</option>
+                        </select>
+                        <div class="beds-count" id="bedsCount">18 beds shown</div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="data-table" id="bedsTable">
+                            <thead>
+                                <tr>
+                                    <th>BED ID</th>
+                                    <th>WARD</th>
+                                    <th>BED TYPE</th>
+                                    <th>STATUS</th>
+                                    <th>ASSIGNED PATIENT</th>
+                                    <th>LAST UPDATED</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bedsTableBody">
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">ICU-01</td>
+                                    <td class="ward-name">ICU</td>
+                                    <td><span class="pill red-pill bed-type">ICU</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4821 - Marcus Rodriguez</td>
+                                    <td class="fade-text last-updated">07:45 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">ICU-02</td>
+                                    <td class="ward-name">ICU</td>
+                                    <td><span class="pill red-pill bed-type">ICU</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4830 - Linda Chen</td>
+                                    <td class="fade-text last-updated">08:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">ICU-03</td>
+                                    <td class="ward-name">ICU</td>
+                                    <td><span class="pill red-pill bed-type">ICU</span></td>
+                                    <td><span class="pill orange-pill status-text">Cleaning</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">08:15 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td class="bold-text blue-link bed-id">ICU-04</td>
+                                    <td class="ward-name">ICU</td>
+                                    <td><span class="pill red-pill bed-type">ICU</span></td>
+                                    <td><span class="pill green-pill status-text">Available</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">08:30 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">EM-01</td>
+                                    <td class="ward-name">Emergency</td>
+                                    <td><span class="pill orange-pill bed-type">Emergency</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4815 - Aisha Okonkwo</td>
+                                    <td class="fade-text last-updated">09:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">EM-02</td>
+                                    <td class="ward-name">Emergency</td>
+                                    <td><span class="pill orange-pill bed-type">Emergency</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4812 - George Hall</td>
+                                    <td class="fade-text last-updated">09:10 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">EM-03</td>
+                                    <td class="ward-name">Emergency</td>
+                                    <td><span class="pill orange-pill bed-type">Emergency</span></td>
+                                    <td><span class="pill blue-pill status-text">Reserved</span></td>
+                                    <td class="patient-name">Incoming transfer</td>
+                                    <td class="fade-text last-updated">09:15 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">EM-04</td>
+                                    <td class="ward-name">Emergency</td>
+                                    <td><span class="pill orange-pill bed-type">Emergency</span></td>
+                                    <td><span class="pill green-pill status-text">Available</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">09:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">CAR-01</td>
+                                    <td class="ward-name">Cardiology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4818 - Priya Sharma</td>
+                                    <td class="fade-text last-updated">08:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">CAR-02</td>
+                                    <td class="ward-name">Cardiology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4814 - Sophie Laurent</td>
+                                    <td class="fade-text last-updated">08:45 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">CAR-03</td>
+                                    <td class="ward-name">Cardiology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill orange-pill status-text">Cleaning</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">08:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">CAR-04</td>
+                                    <td class="ward-name">Cardiology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill green-pill status-text">Available</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">07:30 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">NEU-01</td>
+                                    <td class="ward-name">Neurology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill red-pill status-text">Occupied</span></td>
+                                    <td class="patient-name">PT-4819 - James Thornton</td>
+                                    <td class="fade-text last-updated">08:15 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold-text blue-link bed-id">NEU-02</td>
+                                    <td class="ward-name">Neurology</td>
+                                    <td><span class="pill blue-pill bed-type">General</span></td>
+                                    <td><span class="pill green-pill status-text">Available</span></td>
+                                    <td class="patient-name fade-text">-</td>
+                                    <td class="fade-text last-updated">07:00 AM</td>
+                                    <td>
+                                        <div class="table-actions">
+                                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add / Edit Bed Modal -->
+    <div id="bedModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Bed / Patient</h3>
+                <button class="modal-close-btn" onclick="closeBedModal()">&times;</button>
+            </div>
+            <form id="bedForm" onsubmit="handleSaveBed(event)">
+                <input type="hidden" id="editRowIndex" value="-1">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formBedId">Bed ID</label>
+                            <input type="text" id="formBedId" placeholder="e.g. ICU-05" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formWard">Ward</label>
+                            <select id="formWard" required>
+                                <option value="ICU">ICU</option>
+                                <option value="Emergency">Emergency</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Orthopedic">Orthopedic</option>
+                                <option value="General">General</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="formBedType">Bed Type</label>
+                            <select id="formBedType" required>
+                                <option value="ICU">ICU</option>
+                                <option value="Emergency">Emergency</option>
+                                <option value="General">General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formStatus">Status</label>
+                            <select id="formStatus" onchange="togglePatientInput()" required>
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Reserved">Reserved</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="formPatient">Assigned Patient</label>
+                        <input type="text" id="formPatient" placeholder="e.g. PT-4850 - Alex Smith (or - if none)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeBedModal()">Cancel</button>
+                    <button type="submit" class="btn-primary" id="saveBedBtn">Save Bed</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let editingRowElement = null;
+
+        function updateBedKPIs() {
+            const rows = document.querySelectorAll('#bedsTableBody tr');
+            let total = rows.length;
+            let available = 0;
+            let occupied = 0;
+            let cleaning = 0;
+            let reserved = 0;
+
+            rows.forEach(row => {
+                const statusElem = row.querySelector('.status-text');
+                if (statusElem) {
+                    const status = statusElem.textContent.trim();
+                    if (status === 'Available') available++;
+                    else if (status === 'Occupied') occupied++;
+                    else if (status === 'Cleaning') cleaning++;
+                    else if (status === 'Reserved') reserved++;
+                }
+            });
+
+            const kpiValues = document.querySelectorAll('.kpi-value');
+            if (kpiValues.length >= 5) {
+                kpiValues[0].textContent = total;
+                kpiValues[1].textContent = available;
+                kpiValues[2].textContent = occupied;
+                kpiValues[3].textContent = cleaning;
+                kpiValues[4].textContent = reserved;
+            }
+        }
+
+        function filterBeds() {
+            const searchVal = document.getElementById('bedSearchInput').value.toLowerCase().trim();
+            const wardVal = document.getElementById('wardFilter').value;
+            const typeVal = document.getElementById('typeFilter').value;
+            const statusVal = document.getElementById('statusFilter').value;
+
+            const rows = document.querySelectorAll('#bedsTableBody tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const textContent = row.textContent.toLowerCase();
+                const wardName = row.querySelector('.ward-name') ? row.querySelector('.ward-name').textContent.trim() : '';
+                const bedType = row.querySelector('.bed-type') ? row.querySelector('.bed-type').textContent.trim() : '';
+                const statusText = row.querySelector('.status-text') ? row.querySelector('.status-text').textContent.trim() : '';
+
+                const matchesSearch = !searchVal || textContent.includes(searchVal);
+                const matchesWard = (wardVal === 'All') || (wardName === wardVal);
+                const matchesType = (typeVal === 'All') || (bedType === typeVal);
+                const matchesStatus = (statusVal === 'All') || (statusText === statusVal);
+
+                if (matchesSearch && matchesWard && matchesType && matchesStatus) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            document.getElementById('bedsCount').textContent = `${visibleCount} beds shown`;
+        }
+
+        function togglePatientInput() {
+            const status = document.getElementById('formStatus').value;
+            const patientInput = document.getElementById('formPatient');
+            if (status === 'Available' || status === 'Cleaning') {
+                if (!patientInput.value || patientInput.value === '-') {
+                    patientInput.value = '-';
+                }
+            }
+        }
+
+        function openAddBedModal() {
+            editingRowElement = null;
+            document.getElementById('modalTitle').textContent = 'Add Bed / Patient Info';
+            document.getElementById('saveBedBtn').textContent = 'Add Bed';
+            document.getElementById('bedForm').reset();
+            document.getElementById('formPatient').value = '-';
+            document.getElementById('bedModal').classList.add('active');
+        }
+
+        function openEditBedModal(btn) {
+            editingRowElement = btn.closest('tr');
+            const bedId = editingRowElement.querySelector('.bed-id').textContent.trim();
+            const ward = editingRowElement.querySelector('.ward-name').textContent.trim();
+            const bedType = editingRowElement.querySelector('.bed-type').textContent.trim();
+            const status = editingRowElement.querySelector('.status-text').textContent.trim();
+            const patient = editingRowElement.querySelector('.patient-name').textContent.trim();
+
+            document.getElementById('modalTitle').textContent = 'Edit Bed & Patient Info';
+            document.getElementById('saveBedBtn').textContent = 'Update Bed';
+            document.getElementById('formBedId').value = bedId;
+            document.getElementById('formWard').value = ward;
+            document.getElementById('formBedType').value = bedType;
+            document.getElementById('formStatus').value = status;
+            document.getElementById('formPatient').value = patient;
+
+            document.getElementById('bedModal').classList.add('active');
+        }
+
+        function closeBedModal() {
+            document.getElementById('bedModal').classList.remove('active');
+            document.getElementById('bedForm').reset();
+            editingRowElement = null;
+        }
+
+        function getPillClass(type, val) {
+            if (type === 'bedType') {
+                if (val === 'ICU') return 'pill red-pill bed-type';
+                if (val === 'Emergency') return 'pill orange-pill bed-type';
+                return 'pill blue-pill bed-type';
+            } else {
+                if (val === 'Occupied') return 'pill red-pill status-text';
+                if (val === 'Available') return 'pill green-pill status-text';
+                if (val === 'Cleaning') return 'pill orange-pill status-text';
+                return 'pill blue-pill status-text';
+            }
+        }
+
+        function getCurrentFormattedTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            return `${hours}:${minutes} ${ampm}`;
+        }
+
+        function handleSaveBed(event) {
+            event.preventDefault();
+            const bedId = document.getElementById('formBedId').value.trim();
+            const ward = document.getElementById('formWard').value;
+            const bedType = document.getElementById('formBedType').value;
+            const status = document.getElementById('formStatus').value;
+            let patient = document.getElementById('formPatient').value.trim();
+            if (!patient || status === 'Available' || status === 'Cleaning') {
+                if (!patient || patient === '-') patient = '-';
+            }
+
+            const typePillHtml = `<span class="${getPillClass('bedType', bedType)}">${bedType}</span>`;
+            const statusPillHtml = `<span class="${getPillClass('status', status)}">${status}</span>`;
+            const patientClass = (patient === '-') ? 'patient-name fade-text' : 'patient-name';
+            const updatedTime = getCurrentFormattedTime();
+
+            if (editingRowElement) {
+                // Update existing row
+                editingRowElement.querySelector('.bed-id').textContent = bedId;
+                editingRowElement.querySelector('.ward-name').textContent = ward;
+                editingRowElement.cells[2].innerHTML = typePillHtml;
+                editingRowElement.cells[3].innerHTML = statusPillHtml;
+                editingRowElement.querySelector('.patient-name').className = patientClass;
+                editingRowElement.querySelector('.patient-name').textContent = patient;
+                editingRowElement.querySelector('.last-updated').textContent = updatedTime;
+            } else {
+                // Add new row
+                const tbody = document.getElementById('bedsTableBody');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td class="bold-text blue-link bed-id">${bedId}</td>
+                    <td class="ward-name">${ward}</td>
+                    <td>${typePillHtml}</td>
+                    <td>${statusPillHtml}</td>
+                    <td class="${patientClass}">${patient}</td>
+                    <td class="fade-text last-updated">${updatedTime}</td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="action-btn edit-btn" onclick="openEditBedModal(this)" title="Edit Bed Info">✏️</button>
+                            <button class="action-btn delete-btn-table" onclick="deleteBedRow(this)" title="Delete Bed">🗑️</button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(newRow);
+            }
+
+            closeBedModal();
+            updateBedKPIs();
+            filterBeds();
+        }
+
+        function deleteBedRow(btn) {
+            const row = btn.closest('tr');
+            const bedId = row.querySelector('.bed-id').textContent.trim();
+            if (confirm(`Are you sure you want to delete bed ${bedId}?`)) {
+                row.remove();
+                updateBedKPIs();
+                filterBeds();
+            }
+        }
+
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

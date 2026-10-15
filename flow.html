@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Flow - SmartHospital</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-main">SmartHospital</span>
+                    <span class="logo-sub">BedIQ Platform</span>
+                </div>
+            </div>
+            
+            <div class="menu-section">
+                <div class="menu-title">MAIN MENU</div>
+                <nav class="menu">
+                    <a href="overview.html" class="menu-item">
+                        <span class="icon">⌂</span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                    <a href="patients.html" class="menu-item">
+                        <span class="icon">👤</span>
+                        <span class="text">Patients</span>
+                        <span class="badge blue">247</span>
+                    </a>
+                    <a href="beds.html" class="menu-item">
+                        <span class="icon">🛏️</span>
+                        <span class="text">Bed Management</span>
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <span class="icon">🏥</span>
+                        <span class="text">Ward Management</span>
+                    </a>
+                    <a href="flow.html" class="menu-item active">
+                        <span class="icon">📈</span>
+                        <span class="text">Patient Flow</span>
+                    </a>
+                    <a href="predictions.html" class="menu-item">
+                        <span class="icon">🤖</span>
+                        <span class="text">AI Predictions</span>
+                    </a>
+                    <a href="alerts.html" class="menu-item">
+                        <span class="icon">🔔</span>
+                        <span class="text">Alerts</span>
+                        <span class="badge red">7</span>
+                    </a>
+                    <a href="reports.html" class="menu-item">
+                        <span class="icon">📊</span>
+                        <span class="text">Reports</span>
+                    </a>
+                    <a href="settings.html" class="menu-item">
+                        <span class="icon">⚙️</span>
+                        <span class="text">Settings</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <span class="status-dot green"></span>
+                    <span>System Operational</span>
+                </div>
+                <a href="index.html" class="sign-out">
+                    <span class="icon">🚪</span>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1>Patient Flow</h1>
+                
+                <div class="header-right">
+                    <div class="datetime">
+                        🗓️ Monday, August 10, 2026 - 11:18 AM
+                    </div>
+                    
+                    <div class="notifications">
+                        <span class="bell-icon">🔔</span>
+                        <span class="notif-badge">2</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Body -->
+            <div class="dashboard-body">
+                <!-- 4 Top KPI Cards -->
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG WAIT TIME</span>
+                            <div class="kpi-icon blue-bg">⏱️</div>
+                        </div>
+                        <div class="kpi-value">42 min</div>
+                        <div class="kpi-subtext">Registration to Admission</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">AVG LOS</span>
+                            <div class="kpi-icon blue-bg">📅</div>
+                        </div>
+                        <div class="kpi-value">4.2 days</div>
+                        <div class="kpi-subtext">Admission to Discharge</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">ACTIVE TRANSFERS</span>
+                            <div class="kpi-icon orange-bg">🔃</div>
+                        </div>
+                        <div class="kpi-value">7</div>
+                        <div class="kpi-subtext">In progress now</div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">PENDING DISCHARGE</span>
+                            <div class="kpi-icon red-bg">🔔</div>
+                        </div>
+                        <div class="kpi-value">12</div>
+                        <div class="kpi-subtext">Awaiting orders</div>
+                    </div>
+                </div>
+
+                <!-- Patient Journey Flow (Process Steps) -->
+                <div class="flow-card">
+                    <h2 class="card-title">Patient Journey Flow</h2>
+                    <div class="journey-container">
+                        <!-- Step 1 -->
+                        <div class="journey-step">
+                            <div class="circle-icon cyan-circle">👤</div>
+                            <div class="step-name">Registration</div>
+                            <div class="step-val">34</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+
+                        <div class="journey-arrow cyan-arrow">→</div>
+
+                        <!-- Step 2 -->
+                        <div class="journey-step">
+                            <div class="circle-icon blue-circle">✓</div>
+                            <div class="step-name">Admission</div>
+                            <div class="step-val">28</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+
+                        <div class="journey-arrow blue-arrow">→</div>
+
+                        <!-- Step 3 -->
+                        <div class="journey-step">
+                            <div class="circle-icon purple-circle">🛏️</div>
+                            <div class="step-name">Ward</div>
+                            <div class="step-val">198</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+
+                        <div class="journey-arrow purple-arrow">→</div>
+
+                        <!-- Step 4 -->
+                        <div class="journey-step">
+                            <div class="circle-icon orange-circle">⚡</div>
+                            <div class="step-name">ICU</div>
+                            <div class="step-val">28</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+
+                        <div class="journey-arrow orange-arrow">→</div>
+
+                        <!-- Step 5 -->
+                        <div class="journey-step">
+                            <div class="circle-icon green-circle">📈</div>
+                            <div class="step-name">Recovery</div>
+                            <div class="step-val">45</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+
+                        <div class="journey-arrow green-arrow">→</div>
+
+                        <!-- Step 6 -->
+                        <div class="journey-step">
+                            <div class="circle-icon gray-circle">➔</div>
+                            <div class="step-name">Discharge</div>
+                            <div class="step-val">18</div>
+                            <div class="step-sub">patients</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Split: Hourly Flow Chart & Transfer History -->
+                <div class="flow-grid">
+                    <!-- Hourly Patient Flow Line Chart -->
+                    <div class="flow-card chart-card">
+                        <h2 class="card-title">Hourly Patient Flow</h2>
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 500 220" class="svg-chart">
+                                <defs>
+                                    <linearGradient id="admissionsGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#3182ce" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#3182ce" stop-opacity="0.0"/>
+                                    </linearGradient>
+                                    <linearGradient id="dischargesGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#38a169" stop-opacity="0.2"/>
+                                        <stop offset="100%" stop-color="#38a169" stop-opacity="0.0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Grid Lines -->
+                                <line x1="40" y1="30" x2="480" y2="30" class="chart-grid-line"/>
+                                <line x1="40" y1="70" x2="480" y2="70" class="chart-grid-line"/>
+                                <line x1="40" y1="110" x2="480" y2="110" class="chart-grid-line"/>
+                                <line x1="40" y1="150" x2="480" y2="150" class="chart-grid-line"/>
+                                <line x1="40" y1="190" x2="480" y2="190" class="chart-grid-line"/>
+
+                                <!-- Y-Axis Labels -->
+                                <text x="25" y="34" class="chart-axis-text">12</text>
+                                <text x="25" y="74" class="chart-axis-text">9</text>
+                                <text x="25" y="114" class="chart-axis-text">6</text>
+                                <text x="25" y="154" class="chart-axis-text">3</text>
+                                <text x="25" y="194" class="chart-axis-text">0</text>
+
+                                <!-- Admissions Area & Line (Blue) -->
+                                <path d="M 40 150 C 90 110, 130 30, 180 50 C 230 70, 240 120, 280 90 C 330 60, 390 130, 440 140 C 460 145, 470 130, 480 125 L 480 190 L 40 190 Z" fill="url(#admissionsGrad)"/>
+                                <path d="M 40 150 C 90 110, 130 30, 180 50 C 230 70, 240 120, 280 90 C 330 60, 390 130, 440 140 C 460 145, 470 130, 480 125" fill="none" stroke="#2b6cb0" stroke-width="2.5"/>
+
+                                <!-- Discharges Area & Line (Green) -->
+                                <path d="M 40 180 C 100 140, 160 90, 220 80 C 280 70, 320 60, 370 100 C 420 130, 450 150, 480 165 L 480 190 L 40 190 Z" fill="url(#dischargesGrad)"/>
+                                <path d="M 40 180 C 100 140, 160 90, 220 80 C 280 70, 320 60, 370 100 C 420 130, 450 150, 480 165" fill="none" stroke="#38a169" stroke-width="2.5"/>
+
+                                <!-- X-Axis Labels -->
+                                <text x="40" y="210" class="chart-axis-text">06:00</text>
+                                <text x="105" y="210" class="chart-axis-text">08:00</text>
+                                <text x="170" y="210" class="chart-axis-text">10:00</text>
+                                <text x="235" y="210" class="chart-axis-text">12:00</text>
+                                <text x="300" y="210" class="chart-axis-text">14:00</text>
+                                <text x="365" y="210" class="chart-axis-text">16:00</text>
+                                <text x="425" y="210" class="chart-axis-text">18:00</text>
+                                <text x="475" y="210" class="chart-axis-text">20:00</text>
+                            </svg>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot blue-dot"></span> Admissions</span>
+                            <span class="legend-item"><span class="dot green-dot"></span> Discharges</span>
+                        </div>
+                    </div>
+
+                    <!-- Transfer History Table -->
+                    <div class="flow-card table-card">
+                        <h2 class="card-title">Transfer History</h2>
+                        <div class="table-container">
+                            <table class="data-table flow-table">
+                                <thead>
+                                    <tr>
+                                        <th>PATIENT</th>
+                                        <th>FROM</th>
+                                        <th>TO</th>
+                                        <th>TIME</th>
+                                        <th>REASON</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="bold-text">Marcus Rodriguez</td>
+                                        <td><span class="pill gray-pill">Emergency</span></td>
+                                        <td><span class="pill blue-pill">ICU</span></td>
+                                        <td class="fade-text">Jul 28 - 14:30</td>
+                                        <td class="fade-text">Critical deterioration</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">James Thornton</td>
+                                        <td><span class="pill gray-pill">Emergency</span></td>
+                                        <td><span class="pill blue-pill">Neurology</span></td>
+                                        <td class="fade-text">Jul 25 - 09:15</td>
+                                        <td class="fade-text">Stroke protocol</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Priya Sharma</td>
+                                        <td><span class="pill gray-pill">Emergency</span></td>
+                                        <td><span class="pill blue-pill">Cardiology</span></td>
+                                        <td class="fade-text">Jul 29 - 11:00</td>
+                                        <td class="fade-text">AFib management</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Sophie Laurent</td>
+                                        <td><span class="pill gray-pill">Emergency</span></td>
+                                        <td><span class="pill blue-pill">Cardiology</span></td>
+                                        <td class="fade-text">Jul 30 - 16:45</td>
+                                        <td class="fade-text">STEMI intervention</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Linda Chen</td>
+                                        <td><span class="pill gray-pill">ICU</span></td>
+                                        <td><span class="pill blue-pill">Step-Down</span></td>
+                                        <td class="fade-text">Jul 29 - 08:00</td>
+                                        <td class="fade-text">Stable vitals</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Component: Ward Transfer Analytics Bar Chart -->
+                <div class="flow-card bar-chart-card">
+                    <h2 class="card-title">Ward Transfer Analytics</h2>
+                    <div class="bar-chart-wrapper">
+                        <svg viewBox="0 0 800 230" class="svg-chart">
+                            <!-- Grid Lines -->
+                            <line x1="40" y1="30" x2="780" y2="30" class="chart-grid-line"/>
+                            <line x1="40" y1="70" x2="780" y2="70" class="chart-grid-line"/>
+                            <line x1="40" y1="110" x2="780" y2="110" class="chart-grid-line"/>
+                            <line x1="40" y1="150" x2="780" y2="150" class="chart-grid-line"/>
+                            <line x1="40" y1="190" x2="780" y2="190" class="chart-grid-line"/>
+
+                            <!-- Y-Axis Labels -->
+                            <text x="25" y="34" class="chart-axis-text">60</text>
+                            <text x="25" y="74" class="chart-axis-text">45</text>
+                            <text x="25" y="114" class="chart-axis-text">30</text>
+                            <text x="25" y="154" class="chart-axis-text">15</text>
+                            <text x="25" y="194" class="chart-axis-text">0</text>
+
+                            <!-- Ward 1: ICU -->
+                            <rect x="100" y="110" width="18" height="80" fill="#e2e8f0" rx="3"/>
+                            <rect x="122" y="115" width="18" height="75" fill="#1664c0" rx="3"/>
+                            <text x="120" y="212" class="chart-axis-text" text-anchor="middle">ICU</text>
+
+                            <!-- Ward 2: Emergency -->
+                            <rect x="220" y="90" width="18" height="100" fill="#e2e8f0" rx="3"/>
+                            <rect x="242" y="95" width="18" height="95" fill="#1664c0" rx="3"/>
+                            <text x="240" y="212" class="chart-axis-text" text-anchor="middle">Emergency</text>
+
+                            <!-- Ward 3: Cardiology -->
+                            <rect x="340" y="50" width="18" height="140" fill="#e2e8f0" rx="3"/>
+                            <rect x="362" y="60" width="18" height="130" fill="#1664c0" rx="3"/>
+                            <text x="360" y="212" class="chart-axis-text" text-anchor="middle">Cardiology</text>
+
+                            <!-- Ward 4: Neurology -->
+                            <rect x="460" y="60" width="18" height="130" fill="#e2e8f0" rx="3"/>
+                            <rect x="482" y="75" width="18" height="115" fill="#1664c0" rx="3"/>
+                            <text x="480" y="212" class="chart-axis-text" text-anchor="middle">Neurology</text>
+
+                            <!-- Ward 5: Orthopedic -->
+                            <rect x="580" y="55" width="18" height="135" fill="#e2e8f0" rx="3"/>
+                            <rect x="602" y="70" width="18" height="120" fill="#1664c0" rx="3"/>
+                            <text x="600" y="212" class="chart-axis-text" text-anchor="middle">Orthopedic</text>
+
+                            <!-- Ward 6: Pediatrics -->
+                            <rect x="700" y="80" width="18" height="110" fill="#e2e8f0" rx="3"/>
+                            <rect x="722" y="105" width="18" height="85" fill="#1664c0" rx="3"/>
+                            <text x="720" y="212" class="chart-axis-text" text-anchor="middle">Pediatrics</text>
+                        </svg>
+                    </div>
+                    <div class="chart-legend centered-legend">
+                        <span class="legend-item"><span class="dot dark-blue-dot"></span> Occupied</span>
+                        <span class="legend-item"><span class="dot light-blue-dot"></span> Total Beds</span>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function updateLiveDateTime() {
+            const datetimeElem = document.querySelector('.datetime');
+            if (!datetimeElem) return;
+
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            const dateStr = now.toLocaleDateString('en-US', options);
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeStr = `${hours}:${minutes} ${ampm}`;
+
+            datetimeElem.innerHTML = `🗓️ ${dateStr} · ${timeStr}`;
+        }
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 10000);
+    </script>
+</body>
+</html>

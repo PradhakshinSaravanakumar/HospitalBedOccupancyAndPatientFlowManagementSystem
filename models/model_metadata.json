@@ -1,0 +1,26 @@
+{
+  "xgb_version": "3.4.1",
+  "training_records": 2000,
+  "models": {
+    "occupancy": {
+      "file": "xgb_occupancy.pkl",
+      "type": "regressor",
+      "target": "next_day_occupancy_rate",
+      "mae": 0.0396,
+      "r2": 0.9165
+    },
+    "los": {
+      "file": "xgb_los.pkl",
+      "type": "regressor",
+      "target": "length_of_stay_days",
+      "mae": 1.7728,
+      "r2": 0.4611
+    },
+    "readmission": {
+      "file": "xgb_readmission.pkl",
+      "type": "classifier",
+      "target": "will_readmit_binary",
+      "auc_roc": 0.7019
+    }
+  }
+}
