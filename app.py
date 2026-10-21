@@ -33,10 +33,13 @@ print(f"[XGBoost] LOS model loaded: {xgb_los is not None}")
 print(f"[XGBoost] Readmission model loaded: {xgb_readmission is not None}")
 
 # Ensure DB initialized & seeded
-init_db()
 db = get_db()
-if db.users.count_documents({}) == 0:
-    seed_db()
+try:
+    init_db()
+    if db.users.count_documents({}) == 0:
+        seed_db()
+except Exception as e:
+    print(f"[MongoDB Warning] Initial startup connection check: {e}")
 
 # Helper function to serialize MongoDB documents to JSON
 def clean_doc(doc):
