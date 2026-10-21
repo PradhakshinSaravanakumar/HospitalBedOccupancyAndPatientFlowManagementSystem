@@ -5,7 +5,7 @@ import numpy as np
 import joblib
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
-from db import get_db, init_db
+from db import get_db, init_db, get_masked_uri, DB_NAME
 from seed import seed_db
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -786,8 +786,9 @@ if __name__ == '__main__':
     print("===================================================")
     print("SmartHospital MongoDB Backend Server (Flask + MongoDB)")
     print("Running on http://localhost:5000")
-    print("MongoDB Connection URI: mongodb://localhost:27017/")
-    print("MongoDB Database: hospital_db")
-    print("MongoDB Compass Ready!")
+    print(f"MongoDB Connection URI: {get_masked_uri()}")
+    print(f"MongoDB Database: {DB_NAME}")
+    print("MongoDB Atlas / Compass Connected!")
     print("===================================================")
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
